@@ -1,0 +1,29 @@
+.navbar {
+    background-color: lightblue;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+
+    .navitem {
+        padding: 10px;
+
+        a {
+            text-decoration: none;
+            border-bottom: none;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 0px;
+            background: transparent;
+            transition: width .3s ease-in-out, background-color .3s ease-in-out;
+        }
+
+        &:hover::after {
+            width: 100%;
+            background-color: darkslateblue;
+        }
+    }
+}

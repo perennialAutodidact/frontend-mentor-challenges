@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
+@import '../styles/mixins';
+
+$white: hsl(0, 0%, 100%);
+$lightGrayishViolet: hsl(270, 3%, 87%);
+$darkGrayishViolet: hsl(279, 6%, 55%);
+$veryDarkViolet: #21092f;
+$errorRed: hsl(0, 100%, 66%);
+$indigo: #6448fe;
+$violet: #600594;
+$breakpoint-sm: 375px;
+$breakpoint-lg: 1440px;
+$gradientBgImage__mobile: url('../challengeSourceFiles/interactive-card-details-form-main/images/bg-main-mobile.png');
+$gradientBgImage__desktop: url('../challengeSourceFiles/interactive-card-details-form-main/images/bg-main-desktop.png');
+$ccDetailFormFont: 'Space Grotesk', sans-serif;
+
+
+.ccFormPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+.gradientBgBox {
+    height: 275px;
+    width: 100%;
+
+    background: $gradientBgImage__mobile;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contentBox {}
+
+.form {
+    display: grid;
+    grid-template-areas: "cardholder-name"
+                         "ccNumber"
+                         "expireDate cvc";
+    
+    padding: 20px;
+}
+
+.inputGroup {
+    margin-bottom: 15px;
+}
+
+.formLabel {
+    @include fontFace($family: $ccDetailFormFont, $size: .8rem, $weight: 500, $color: $veryDarkViolet);
+
+    margin: 0;
+    margin-bottom: 5px;
+
+    letter-spacing: 1.5px;
+}
+
+.formInput {
+    @include fontFace($family: $ccDetailFormFont);
+    @include border-radius(10px);
+    border: 2px solid $lightGrayishViolet;
+    padding: 10px;
+    transition: border .2s ease-in-out;
+
+}
+
+.formInput:focus {
+    outline: none;
+    border: 2px solid $indigo;
+}
+
+.formButton {
+    @include fontFace($family: $ccDetailFormFont, $color: $white);
+    @include border-radius(10px);
+    border: none;
+    background-color: $veryDarkViolet;
+    transition: background-color .2s ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $indigo;
+    }
+}
+
+
+@media (min-width:1440px) {
+    .ccFormPage {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .gradientBgBox {
+        min-height: 100vh;
+        max-width: 25%;
+
+        background: $gradientBgImage__desktop;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .contentBox {
+        // width: 70%;
+    }
+}
