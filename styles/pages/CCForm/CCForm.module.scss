@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
+@import 'common/mixins.scss';
+@import './card.scss';
+
+
+
+.ccFormPage {
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    min-height: 85vh;
+}
+
+.gradientBgBox {
+    @include flex($align-items:center, $justify-content: center);
+    @include rectangle(30vh, 100%);
+
+    
+    background: $gradientBgImage__mobile;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: relative;
+}
+
+.contentBox {
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+    // min-height: 70vh;
+}
+
+.form {
+    margin-bottom: 50px;
+}
+
+.inputGroup {
+    // margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-right: 5px;
+}
+
+
+.formLabel {
+    @include font-face($family: $ccDetailFormFont, $color: $veryDarkViolet);
+
+    margin: 0;
+    
+    letter-spacing: 1.5px;
+    margin-top: 10px;
+}
+
+.formInputWrapper {
+    // @include flex($align-items: center, $justify-content: center);
+    @include border-radius(10px);
+    padding: 2px;
+    background: $lightGrayishViolet;
+}
+
+.formInputWrapperFocused {
+    background: linear-gradient(90deg, $indigo 60%, $violet 80%);
+}
+
+.formInput {
+    @include font-face($family: $ccDetailFormFont, $size: 2rem);
+    @include border-radius(8px);
+    padding: 10px;
+    border: none;
+    margin: 0;
+}
+
+.formInput:focus {
+    outline: none;
+
+}
+
+
+.formButton {
+    @include font-face($family: $ccDetailFormFont, $size: 2rem, $weight:500, $color: $white);
+    @include border-radius(10px);
+    border: none;
+    background-color: $veryDarkViolet;
+    transition: background-color .2s ease-in-out;
+    text-transform: none;
+    padding: 8px;
+    &:hover {
+        cursor: pointer;
+        background-color: $indigo;
+        color: $white;
+    }
+}
+
+
+@media (min-width:1440px) {
+    .ccFormPage {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .form {
+        max-width: 40%;
+        // margin-left: 100px;
+    }
+
+    .gradientBgBox {
+        min-height: 100vh;
+        max-width: 30%;
+
+        justify-content: flex-end;
+
+        background: $gradientBgImage__desktop;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .contentBox {
+        padding-top: 200px;
+        padding-left: 100px;
+        width: 100%;
+    }
+}

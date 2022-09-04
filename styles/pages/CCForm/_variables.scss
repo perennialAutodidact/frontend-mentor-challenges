@@ -1,0 +1,27 @@
+// Page
+$white: hsl(0, 0%, 100%);
+$lightGrayishViolet: hsl(270, 3%, 87%);
+$darkGrayishViolet: hsl(279, 6%, 55%);
+$veryDarkViolet: #21092f;
+$errorRed: hsl(0, 47%, 46%);
+$indigo: #6448fe;
+$violet: #600594;
+
+$breakpoint-sm: 375px;
+$breakpoint-lg: 1440px;
+
+$gradientBgImage__mobile: url('../../../components/CCForm/starterCode/images/bg-main-mobile.png');
+$gradientBgImage__desktop: url('../../../components/CCForm/starterCode/images/bg-main-desktop.png');
+
+$ccDetailFormFont: 'Space Grotesk', sans-serif;
+
+// Card
+$cardImage__back:  url('../../../components/CCForm/starterCode/images/bg-card-back.png');
+$cardImage__front: url('../../../components/CCForm/starterCode/images/bg-card-front.png');
+$cardImage__logo: url('../../../components/CCForm/starterCode/images/card-logo.svg');
+
+$cardHeight__mobile: 178px;
+$cardWidth__mobile: 325px;
+
+$cardHeight__desktop: 233px;
+$cardWidth__desktop: 425px;

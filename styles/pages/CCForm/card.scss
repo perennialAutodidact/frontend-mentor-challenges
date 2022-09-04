@@ -1,0 +1,110 @@
+@import './variables';
+
+.card {
+    @include rectangle($cardHeight__mobile, $cardWidth__mobile);
+    @include font-face($ccDetailFormFont, $color: $white, $size: 1.2rem);
+    @include border-radius(10px);
+    
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+    box-shadow: 20px 10px 40px -20px $darkGrayishViolet;
+    
+    position: relative;
+}
+
+.cardBack {
+    background-image: $cardImage__back;
+
+    top: 0;
+    left: 25px;
+}
+
+.cvc {
+    @include rectangle(20px, 30px);
+
+    letter-spacing: 1.2px;
+
+    position: relative;
+
+    top: 44%;
+    left: 80%;
+}
+
+.cardFront {
+    background-image: $cardImage__front;
+
+    top: 80px;
+    right: 50px;
+}
+
+.cardLogo {
+    @include rectangle(40px, 65px);
+
+    background: $cardImage__logo;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+
+
+.cardInfo {
+    height: 45%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-evenly;
+    
+    position: relative;
+    top: 20%;
+    
+    letter-spacing: 2.5px;
+}
+
+.cardNumber {
+    font-size: 2.2rem;
+    letter-spacing: 2.5px;
+    text-align: center;
+}
+
+.bottomInfo {
+    padding: 0 18px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (min-width: 1440px){
+    .cardBack {
+        @include rectangle($cardHeight__desktop, $cardWidth__desktop);
+        
+        top: 10%;
+        left: 50%;
+    }
+
+    .cvc {
+        font-size: 1.5rem;
+        top: 46%;
+    }
+
+    .cardFront {
+        @include rectangle($cardHeight__desktop, $cardWidth__desktop);
+
+        top: -120%;
+        left: -100px;
+    }
+
+    .cardInfo {
+        height: 35%;
+        padding: 0 15px;
+        top: 35%;
+    }
+
+    .cardNumber {
+        font-size: 2.8rem;
+    }
+}
