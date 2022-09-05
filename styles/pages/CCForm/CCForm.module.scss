@@ -12,10 +12,10 @@
 }
 
 .gradientBgBox {
-    @include flex($align-items:center, $justify-content: center);
+    @include flex($align-items: center, $justify-content: center);
     @include rectangle(30vh, 100%);
 
-    
+
     background: $gradientBgImage__mobile;
     background-repeat: no-repeat;
     background-size: cover;
@@ -37,9 +37,8 @@
 .inputGroup {
     // margin-bottom: 15px;
     display: flex;
-    flex-direction: column;
     gap: 5px;
-    padding-right: 5px;
+    // padding-right: 5px;
 }
 
 
@@ -47,7 +46,7 @@
     @include font-face($family: $ccDetailFormFont, $color: $veryDarkViolet);
 
     margin: 0;
-    
+
     letter-spacing: 1.5px;
     margin-top: 10px;
 }
@@ -61,6 +60,10 @@
 
 .formInputWrapperFocused {
     background: linear-gradient(90deg, $indigo 60%, $violet 80%);
+}
+
+.formInputWrapperError {
+    background: $errorRed;
 }
 
 .formInput {
@@ -78,13 +81,14 @@
 
 
 .formButton {
-    @include font-face($family: $ccDetailFormFont, $size: 2rem, $weight:500, $color: $white);
+    @include font-face($family: $ccDetailFormFont, $size: 2rem, $weight: 500, $color: $white);
     @include border-radius(10px);
     border: none;
     background-color: $veryDarkViolet;
     transition: background-color .2s ease-in-out;
     text-transform: none;
     padding: 8px;
+
     &:hover {
         cursor: pointer;
         background-color: $indigo;

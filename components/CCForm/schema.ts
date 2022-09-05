@@ -11,12 +11,16 @@ export const schema: z.ZodSchema = z.object({
       .string()
       .min(1, "Cannot be blank.")
       .length(2)
-      .regex(new RegExp("d"), "Must contain only numbers."),
-    year: z.string().min(1, "Cannot be blank.").length(2),
+      .regex(new RegExp(/\d/), "Must contain only numbers."),
+    year: z
+      .string()
+      .min(1, "Cannot be blank.")
+      .length(2, "Needs two numbers.")
+      .regex(new RegExp(/\d/), "Must contain only numbers."),
   }),
-  // cvc: z
-  //   .string()
-  //   .min(1, "Cannot be blank.")
-  //   .length(3)
-  //   .regex(new RegExp("d"), "Must contain only numbers."),
+  cvc: z
+    .string()
+    .min(1, "Cannot be blank.")
+    .length(3)
+    .regex(new RegExp(/\d/), "Must contain only numbers."),
 });

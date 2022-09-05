@@ -1,29 +1,37 @@
-import React from "react";
-import { useForm, FieldErrors } from "react-hook-form";
+import React, { useState } from "react";
+import {
+  useForm,
+  FieldErrors,
+  Controller,
+  FieldError,
+  FieldErrorsImpl,
+  Merge,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "./schema";
 import styles from "styles/pages/CCForm/CCForm.module.scss";
-import Input from "./Input";
+// import Input from "./Input";
 import { ErrorMessage } from "@hookform/error-message";
+import Input from "./Input";
 
 export type FormData = {
-//   cardholderName: string;
-//   ccNumber: string;
+  //   cardholderName: string;
+  //   ccNumber: string;
   expirationDate: {
     month: string;
     year: string;
   };
-//   cvc: string;
+  cvc: string;
 };
 
 const defaultValues: FormData = {
-//   cardholderName: "",
-//   ccNumber: "",
+  //   cardholderName: "",
+  //   ccNumber: "",
   expirationDate: {
     month: "",
     year: "",
   },
-//   cvc: "",
+  cvc: "",
 };
 
 const Form: React.FC = () => {
@@ -34,17 +42,41 @@ const Form: React.FC = () => {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues,
+    mode: "onSubmit",
   });
 
+  const [activeElement, setActiveElement] = useState<Element | null>(null);
+
+  const onFocus = (e: React.FocusEvent) => {
+    setActiveElement(e.target);
+  };
+  const onBlur = (e: React.FocusEvent) => {
+    setActiveElement(null);
+  };
   const onSubmit = (data: FormData) => {
     console.log("BLAHBLAHBLAH");
     console.log(data);
     console.log({ errors });
   };
   const onError = (errors: FieldErrors) => {
+    console.log(errors);
     // console.log(errors)
   };
 
+  const formatExpirationDateErrors = (
+    errors: Merge<
+      FieldError,
+      FieldErrorsImpl<{
+        month: string;
+        year: string;
+      }>
+    >
+  ): string[] => {
+    let fieldErrors = Object.keys(errors).reduce((prev, curr, i, arr) => {
+      console.log({ prev, curr, i, arr });
+    }, []);
+    return ["error"];
+  };
   // const { activeElement, listenersReady } = useActiveElement()
   // if (!listenersReady) {
   //     return <></>
@@ -52,7 +84,7 @@ const Form: React.FC = () => {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit, onError)}
       className={`${styles.form} container`}
     >
       {/* <div className="row">
@@ -79,40 +111,46 @@ const Form: React.FC = () => {
             </div> */}
       <div className="row">
         <div className="twelve columns">
-          <label htmlFor="expireMonth" className="twelve columns">
+          <label htmlFor="expirationDate" className="six columns">
             <h6 className={`${styles.formLabel}`}>Exp. Date (MM/YY)</h6>
           </label>
-          <div className={`six columns`}>
-            <Input
-              name="expirationDate.month"
-              // classnames="six columns"
-              placeholder="MM"
-            />
-            <Input
-              name="expirationDate.year"
-              placeholder="YY"
-              // classnames="six columns"
-            />
-            {/* <ErrorMessage
-              name={"expireDate"}
-              errors={errors}
-              render={({ message }) => (
-                <div className="twelve columns">{message}</div>
-              )}
-            /> */}
+          <label htmlFor="cvc" className="six columns">
+            <h6 className={`${styles.formLabel}`}>CVC</h6>
+          </label>
+          <div className={`${styles.inputGroup} twelve columns`}>
+            <div className={`three columns`}>
+              <Controller
+                name="expirationDate.month"
+                control={control}
+                render={({ field }) => <Input {...field} errors={errors} />}
+              />
+            </div>
+            <div className={`three columns`}>
+              <Controller
+                name="expirationDate.year"
+                control={control}
+                render={({ field }) => <Input {...field} errors={errors} />}
+              />
+            </div>
+            <div className="six columns">
+              <Controller
+                name="cvc"
+                control={control}
+                render={({ field }) => <Input {...field} errors={errors} />}
+              />
+            </div>
           </div>
+          <div className="six columns">
+            {errors.expirationDate &&
+              formatExpirationDateErrors(errors.expirationDate)}
+          </div>
+          <div className="six columns">Cannot be blank.</div>
         </div>
-        {/* <div className="six columns">
-                    <label htmlFor="cvc" className="twelve columns">
-                        <h6 className={`${styles.formLabel}`}>CVC</h6>
-
-                    </label>
-                    <Input
-                        name='cvc'
-                        // classnames="twelve columns"
-                        placeholder="e.g. 123"
-                    />
-                </div> */}
+        {/* <Input
+            name="cvc"
+            // classnames="twelve columns"
+            placeholder="e.g. 123"
+          /> */}
       </div>
       <button type="submit" className={`${styles.formButton} twelve columns`}>
         Confirm
@@ -122,7 +160,6 @@ const Form: React.FC = () => {
 };
 
 export default Form;
-
 
 // import { useForm, Controller } from "react-hook-form";
 // import { zodResolver } from "@hookform/resolvers/zod";
