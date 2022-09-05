@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navitem}>
-        <Link href="ccDetailForm" passHref>
+        <Link href="/challenges/junior/cc-form" passHref>
           <a>CC Form</a>
         </Link>
       </div>

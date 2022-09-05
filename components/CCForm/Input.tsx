@@ -1,51 +1,61 @@
-import React, { useState } from 'react'
-import { useController, UseControllerProps, FieldErrorsImpl } from 'react-hook-form';
-import { FormData } from './Form';
-import styles from 'styles/pages/CCForm/CCForm.module.scss'
+import React, { useState } from "react";
+import {
+  useController,
+  UseControllerProps,
+  FieldErrorsImpl,
+} from "react-hook-form";
+import { FormData } from "./Form";
+import styles from "styles/pages/CCForm/CCForm.module.scss";
 
 type InputProps = React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-> & {
-    classnames: string;
-    errors: FieldErrorsImpl<FormData>
-}
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+> &
+  UseControllerProps<FormData>;
 
-const Input = (props: UseControllerProps<FormData> & InputProps) => {
-    const { field, ...rest } = useController(props)
-    const [activeElement, setActiveElement] = useState<Element | null>(null)
+//  & {
+//     classnames: string;
+// }
 
-    console.log(rest)
+const Input: React.FC<InputProps> = (inputProps: InputProps) => {
+  const { field: {value, ...field}, ...rest } = useController(inputProps);
+  const [activeElement, setActiveElement] = useState<Element | null>(null);
 
-    const onFocus = (e: React.FocusEvent) => {
-        setActiveElement(e.target)
-    }
-    const onBlur = (e: React.FocusEvent) => {
-        setActiveElement(null)
-    }
+  // console.log(rest)
 
-    return (
-        <div className={`
-            ${styles.formInputWrapper}
-            ${activeElement?.id === props.name && styles.formInputWrapperFocused} 
-            ${props.classnames}
-            `}
-        >
-            <input
-                {...field}
-                className={`${styles.formInput} u-full-width`}
-                onFocus={e => {
-                    onFocus(e)
-                }}
-                onBlur={(e) => {
-                    onBlur(e);
-                    field.onBlur()
-                }}
-                id={props.name}
-                placeholder={props.placeholder}
-            />
-        </div>
-    )
-}
+  const onFocus = (e: React.FocusEvent) => {
+    setActiveElement(e.target);
+  };
+  const onBlur = (e: React.FocusEvent) => {
+    setActiveElement(null);
+  };
 
-export default Input
+  return (
+    // <div
+    //   className={`
+    //         ${styles.formInputWrapper}
+    //         ${
+    //           activeElement?.id === inputProps.name &&
+    //           styles.formInputWrapperFocused
+    //         } 
+    //         `}
+    // >
+      <input
+        value={value}
+        {...field}
+        className={`${styles.formInput} u-full-width`}
+        // onFocus={(e) => {
+        //   onFocus(e);
+        // }}
+        // onBlur={(e) => {
+        //   onBlur(e);
+        //   field.onBlur();
+        // }}
+        id={inputProps.name}
+        placeholder={inputProps.placeholder}
+      />
+    // </div>
+  );
+};
+
+export default Input;
