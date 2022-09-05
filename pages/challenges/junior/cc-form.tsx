@@ -6,7 +6,7 @@ import Card from "components/CCForm/Card";
 import CompletionCard from "components/CCForm/CompletionCard";
 
 const CcDetailForm = () => {
-  const [formComplete, setFormComplete] = useState<boolean>(true);
+  const [formComplete, setFormComplete] = useState<boolean>(false);
   const toggleComplete = (e: React.FormEvent<any>) => {
     setFormComplete((formComplete) => !formComplete);
   };

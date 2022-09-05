@@ -9,7 +9,7 @@ const Card = () => {
                 <div className={styles.cardInfo}>
                     <div className={styles.cardNumber}>0000 0000 0000 0000</div>
                     <div className={styles.bottomInfo}>
-                        <div className={styles.cardholderName}>MANISH PATEL</div>
+                        <div className={styles.cardholderName}>RAVI SHANKAR</div>
                         <div className={styles.expireDate}>00/00</div>
                     </div>
                 </div>
