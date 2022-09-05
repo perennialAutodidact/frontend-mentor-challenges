@@ -1,0 +1,38 @@
+@import './variables';
+@import 'styles/common/mixins.scss';
+
+.completionCard {
+    @include flex($direction: column, $align-items:center);
+    max-width: 100%;
+}
+
+.completionHeader {
+    @include flex($justify-content: center);
+    margin-bottom: 30px;
+}
+
+.completionIcon {
+    @include rectangle(60px);
+    background-image: $completionIcon;
+    background-size: contain;
+}
+
+.thankYou {
+    @include flex($justify-content: center);
+    @include font-face($ccDetailFormFont, $size: 4rem, $color: $veryDarkViolet);
+    letter-spacing: 2px;
+}
+
+.completionMessage {
+    @include font-face($ccDetailFormFont, $size: 2rem, $color: $darkGrayishViolet);
+    @include flex($justify-content: center);
+
+    margin-bottom: 30px;
+}
+
+@media (min-width: 1440px) {
+
+    .completionCard {
+        max-width: 40%;
+    }
+}

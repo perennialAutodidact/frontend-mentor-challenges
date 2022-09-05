@@ -1,22 +1,13 @@
 import React, { useState } from "react";
-import {
-  useForm,
-  FieldErrors,
-  Controller,
-  FieldError,
-  FieldErrorsImpl,
-  Merge,
-} from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "./schema";
 import styles from "styles/pages/CCForm/CCForm.module.scss";
-// import Input from "./Input";
-import { ErrorMessage } from "@hookform/error-message";
 import Input from "./Input";
 
 export type FormData = {
-  //   cardholderName: string;
-  //   ccNumber: string;
+  cardholderName: string;
+  ccNumber: string;
   expirationDate: {
     month: string;
     year: string;
@@ -24,9 +15,11 @@ export type FormData = {
   cvc: string;
 };
 
+export type ActiveElement = Element | null;
+
 const defaultValues: FormData = {
-  //   cardholderName: "",
-  //   ccNumber: "",
+  cardholderName: "",
+  ccNumber: "",
   expirationDate: {
     month: "",
     year: "",
@@ -34,7 +27,29 @@ const defaultValues: FormData = {
   cvc: "",
 };
 
-const Form: React.FC = () => {
+interface FormProps {
+  toggleComplete: React.FormEventHandler;
+}
+
+const Form: React.FC<FormProps> = ({ toggleComplete }: FormProps) => {
+  const [activeElement, setActiveElement] = useState<ActiveElement>(null);
+
+  const onFocusHandler = () => (e: React.FocusEvent<HTMLInputElement>) => {
+    setActiveElement(e.target);
+  };
+  const onBlurHandler = () => (e: React.FocusEvent) => {
+    setActiveElement(null);
+  };
+
+  const onSubmit = async (data: FormData, e: any) => {
+    try {
+      console.log({ success: data });
+      toggleComplete(e);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const {
     control,
     handleSubmit,
@@ -45,70 +60,62 @@ const Form: React.FC = () => {
     mode: "onSubmit",
   });
 
-  const [activeElement, setActiveElement] = useState<Element | null>(null);
-
-  const onFocus = (e: React.FocusEvent) => {
-    setActiveElement(e.target);
-  };
-  const onBlur = (e: React.FocusEvent) => {
-    setActiveElement(null);
-  };
-  const onSubmit = (data: FormData) => {
-    console.log("BLAHBLAHBLAH");
-    console.log(data);
-    console.log({ errors });
-  };
-  const onError = (errors: FieldErrors) => {
-    console.log(errors);
-    // console.log(errors)
-  };
-
-  const formatExpirationDateErrors = (
-    errors: Merge<
-      FieldError,
-      FieldErrorsImpl<{
-        month: string;
-        year: string;
-      }>
-    >
-  ): string[] => {
-    let fieldErrors = Object.keys(errors).reduce((prev, curr, i, arr) => {
-      console.log({ prev, curr, i, arr });
-    }, []);
-    return ["error"];
-  };
-  // const { activeElement, listenersReady } = useActiveElement()
-  // if (!listenersReady) {
-  //     return <></>
-  // }
-
   return (
     <form
-      onSubmit={handleSubmit(onSubmit, onError)}
+      onSubmit={handleSubmit(onSubmit)}
       className={`${styles.form} container`}
     >
-      {/* <div className="row">
+      <div className="row">
+        <label htmlFor="cardholderName">
+          <h6 className={`${styles.formLabel}`}>CARDHOLDER NAME</h6>
+        </label>
+        <Controller
+          name="cardholderName"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              placeholder={"e.g. Ravi Shankar"}
+              onFocus={onFocusHandler}
+              onBlur={onBlurHandler}
+              errors={errors}
+              activeElement={activeElement}
+            />
+          )}
+        />
+        <div className="row">
+          {errors?.cardholderName && (
+            <div className={styles.formErrorMessage}>
+              {errors?.cardholderName.message}
+            </div>
+          )}
+        </div>
+        <label htmlFor="ccNumber">
+          <h6 className={`${styles.formLabel}`}>CARD NUMBER</h6>
+        </label>
 
-                <label htmlFor="cardholderName">
-                    <h6 className={`${styles.formLabel}`}>CARDHOLDER NAME</h6>
-                </label>
-                <Input
-                    placeholder="e.g. Manish Patel"
-                    // classnames="twelve columns"
-                    name='cardholderName'
-                />
-                <label htmlFor="ccNumber">
-                    <h6 className={`${styles.formLabel}`}>CARD NUMBER</h6>
-                </label>
-
-                <Input
-                    control={control}
-                    name='ccNumber'
-                    // classnames="twelve columns"
-                    placeholder="e.g. 1234 5678 9123 0000"
-                />
-
-            </div> */}
+        <Controller
+          name="ccNumber"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              placeholder={"1234 5678 9123 0000"}
+              onFocus={onFocusHandler}
+              onBlur={onBlurHandler}
+              errors={errors}
+              activeElement={activeElement}
+            />
+          )}
+        />
+        <div className="row">
+          {errors?.ccNumber && (
+            <div className={styles.formErrorMessage}>
+              {errors?.ccNumber.message}
+            </div>
+          )}
+        </div>
+      </div>
       <div className="row">
         <div className="twelve columns">
           <label htmlFor="expirationDate" className="six columns">
@@ -117,34 +124,94 @@ const Form: React.FC = () => {
           <label htmlFor="cvc" className="six columns">
             <h6 className={`${styles.formLabel}`}>CVC</h6>
           </label>
-          <div className={`${styles.inputGroup} twelve columns`}>
-            <div className={`three columns`}>
+          <div className={`row`}>
+            <div className={`three columns ${styles["me-sm-5px"]}`}>
               <Controller
                 name="expirationDate.month"
                 control={control}
-                render={({ field }) => <Input {...field} errors={errors} />}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={"MM"}
+                    onFocus={onFocusHandler}
+                    onBlur={onBlurHandler}
+                    errors={errors}
+                    activeElement={activeElement}
+                  />
+                )}
               />
             </div>
-            <div className={`three columns`}>
+            <div className={`three columns ${styles["me-sm-5px"]}`}>
               <Controller
                 name="expirationDate.year"
                 control={control}
-                render={({ field }) => <Input {...field} errors={errors} />}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={"YY"}
+                    onFocus={onFocusHandler}
+                    onBlur={onBlurHandler}
+                    errors={errors}
+                    activeElement={activeElement}
+                  />
+                )}
               />
             </div>
-            <div className="six columns">
+            <div className={`six columns ${styles["ms-sm-10px"]}`}>
               <Controller
                 name="cvc"
                 control={control}
-                render={({ field }) => <Input {...field} errors={errors} />}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={"e.g. 456"}
+                    onFocus={onFocusHandler}
+                    onBlur={onBlurHandler}
+                    errors={errors}
+                    activeElement={activeElement}
+                  />
+                )}
               />
             </div>
           </div>
+        </div>
+        <div className="row">
           <div className="six columns">
-            {errors.expirationDate &&
-              formatExpirationDateErrors(errors.expirationDate)}
+            {errors.expirationDate?.month && (
+              <div className={styles.formErrorMessage}>
+                {"month" in errors.expirationDate &&
+                  "year" in errors.expirationDate && (
+                    <>
+                      <strong>Month</strong> <br />
+                    </>
+                  )}
+                {errors.expirationDate.month.message}
+              </div>
+            )}
+            {errors.expirationDate?.year && (
+              <div className={styles.formErrorMessage}>
+                {"month" in errors.expirationDate &&
+                  "year" in errors.expirationDate && (
+                    <>
+                      <strong>Year</strong>
+                      <br />
+                    </>
+                  )}
+                {errors.expirationDate.year.message}
+              </div>
+            )}
           </div>
-          <div className="six columns">Cannot be blank.</div>
+          <div
+            className={`six columns ${
+              !errors.expirationDate && "offset-by-six columns"
+            }`}
+          >
+            {errors?.cvc && (
+              <div className={styles.formErrorMessage}>
+                {errors?.cvc.message}
+              </div>
+            )}
+          </div>
         </div>
         {/* <Input
             name="cvc"

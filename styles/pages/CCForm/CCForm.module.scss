@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
 @import 'common/mixins.scss';
 @import './card.scss';
-
+@import './completion.scss';
 
 
 .ccFormPage {
@@ -72,13 +72,23 @@
     padding: 10px;
     border: none;
     margin: 0;
+    
+}
+
+.me-sm-5px {
+    margin-right: 5px;
+}
+.ms-sm-10px {
+    margin-left: 10px;
 }
 
 .formInput:focus {
     outline: none;
-
 }
 
+.formErrorMessage {
+    color: $errorRed;
+}
 
 .formButton {
     @include font-face($family: $ccDetailFormFont, $size: 2rem, $weight: 500, $color: $white);
@@ -88,10 +98,15 @@
     transition: background-color .2s ease-in-out;
     text-transform: none;
     padding: 8px;
+    margin-top: 15px;   
 
     &:hover {
         cursor: pointer;
         background-color: $indigo;
+        color: $white;
+    }
+    
+    &:focus {
         color: $white;
     }
 }
@@ -106,6 +121,13 @@
     .form {
         max-width: 40%;
         // margin-left: 100px;
+    }
+
+    .me-sm-5px {
+        margin-right: 0;
+    }
+    .ms-sm-5px {
+        margin-left: 0;
     }
 
     .gradientBgBox {
