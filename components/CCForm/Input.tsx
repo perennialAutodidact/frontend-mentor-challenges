@@ -18,20 +18,6 @@ type InputProps = React.DetailedHTMLProps<
   ControllerRenderProps &
   AdditionalProps;
 
-// const formatCardNumber = (string:string) => {
-//   let cardNumber = ''
-//   for(let i=0; i<string.length-1; i++){
-//     if(i % 4 === 0 && i > 0){
-//       cardNumber+=' '
-//     }
-//     else {
-//       cardNumber += string[i]
-//     }
-//   }
-//   if(!cardNumber)
-//   return cardNumber
-// }
-
 const formatCardNumber = (string: string) =>
   string
     .replace(/\W/g, "")
