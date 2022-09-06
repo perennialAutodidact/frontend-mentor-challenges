@@ -1,0 +1,10 @@
+@import '../../common/mixins.scss';
+
+.indexPage {
+    margin-top: 30px;
+}
+
+.challengeList {
+    @include flex($direction: column) //$justify-content: flex-start);
+
+}
