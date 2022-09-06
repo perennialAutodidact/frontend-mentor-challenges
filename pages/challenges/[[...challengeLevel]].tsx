@@ -54,9 +54,7 @@ const ChallengesIndexPage = ({
   challengeData,
   challengeLevel,
 }: ChallengesIndexPageProps) => {
-  console.log(challengeData);
   const challengeKeys = Object.keys(challengeData) as ChallengeLevel[];
-  const showingAllChallenges = Object.keys(challengeData).length > 1;
 
   return (
     <Layout title={title} description={description}>
