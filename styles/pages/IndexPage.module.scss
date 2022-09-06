@@ -1,0 +1,37 @@
+@import '../common/mixins.scss';
+@import '../common/variables';
+
+.indexPage {
+    margin-top: 30px;
+
+    h3 {
+        text-align: center;
+    }
+}
+
+.paragraph {
+    font-size: 2rem;
+}
+
+.iconSet {
+    @include flex($justify-content:center);
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.icon {
+    color: black;
+    font-size: 5rem;
+    transition: color .3s ease-in-out;
+}
+
+.icon:hover {
+    color: $linkColor__hover;
+}
+
+.librariesList {
+    @include flex($justify-content: center);
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 2rem;
+}
