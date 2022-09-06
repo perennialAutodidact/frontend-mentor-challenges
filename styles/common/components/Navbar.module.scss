@@ -29,5 +29,14 @@
             width: 100%;
             background-color: darkslateblue;
         }
+
+    }
+
+    .navItem__active::after {
+        content: '';
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: darkslateblue;
     }
 }
