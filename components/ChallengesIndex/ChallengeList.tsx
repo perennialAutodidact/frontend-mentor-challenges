@@ -10,14 +10,17 @@ interface ChallengeListProps {
 const ChallengeList = ({ challenges }: ChallengeListProps) => {
   return (
     <ul className={`${styles.challengeList}`}>
-      {challenges &&
+      {challenges.length > 0 ? (
         challenges.map((challenge) => (
           <li>
             <Link href={challenge.href} passHref>
               <a>{challenge.title}</a>
             </Link>
           </li>
-        ))}
+        ))
+      ) : (
+        <h5>No Solutions</h5>
+      )}
     </ul>
   );
 };
