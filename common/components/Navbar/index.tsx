@@ -1,42 +1,55 @@
 import React, { useState } from "react";
 import styles from "styles/common/components/Navbar.module.scss";
-import Link from "next/link";
 import NavItem from "./NavItem";
-import { Route, route } from "nextjs-routes";
+import { Route } from "nextjs-routes";
 
 const Navbar = () => {
-  const [activeNavItem, setActiveNavItem] = useState<string>("junior");
+  const [activeItem, setActiveItem] = useState<string>("Home");
+
   return (
     <nav className={styles.navbar}>
-      <NavItem
-        linkText={"All"}
-        pathname={"/challenges/[[...challengeLevel]]"}
-        itemIsActive={activeNavItem === "all"}
-        setActiveNavItem={setActiveNavItem}
-      />
-      <NavItem
-        linkText={"Newbie"}
-        pathname={"/challenges/[[...challengeLevel]]"}
-        query={{ challengeLevel: "newbie" }}
-        itemIsActive={activeNavItem === "newbie"}
-        setActiveNavItem={setActiveNavItem}
-      />
-      <NavItem
-        linkText={"Junior"}
-        pathname={"/challenges/[[...challengeLevel]]"}
-        query={{ challengeLevel: "junior" }}
-        itemIsActive={activeNavItem === "junior"}
-        setActiveNavItem={setActiveNavItem}
-      />
-      <NavItem
-        linkText={"Intermediate"}
-        pathname={"/challenges/[[...challengeLevel]]"}
-        query={{ challengeLevel: "intermediate" }}
-        itemIsActive={activeNavItem === "intermediate"}
-        setActiveNavItem={setActiveNavItem}
-      />
+      <div className={styles.navitems}>
+        {NAV_ITEMS.map((navItem) => (
+          <NavItem
+            linkText={navItem.linkText}
+            href={navItem.href}
+            itemIsActive={navItem.itemIsActive(activeItem, navItem.linkText)}
+            setActiveItem={setActiveItem}
+            key={navItem.linkText}
+          />
+        ))}
+      </div>
     </nav>
   );
 };
+
+interface NavItem {
+  linkText: string;
+  href: Route;
+  itemIsActive(activeItem: string, linkText: string): boolean;
+}
+
+const isActiveItem = (activeItem: string, linkText: string) => {
+  return activeItem === linkText;
+};
+
+const NAV_ITEMS: NavItem[] = [
+  {
+    linkText: "Home",
+    href: {
+      pathname: "/",
+      query: {},
+    },
+    itemIsActive: isActiveItem,
+  },
+  {
+    linkText: "Challenges",
+    href: {
+      pathname: "/challenges/[[...challengeLevel]]",
+      query: {},
+    },
+    itemIsActive: isActiveItem,
+  },
+];
 
 export default Navbar;
