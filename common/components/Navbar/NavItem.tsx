@@ -5,33 +5,23 @@ import { Query, Route } from "nextjs-routes";
 
 interface NavItemProps {
   itemIsActive: boolean;
-  setActiveNavItem: React.Dispatch<React.SetStateAction<string>>;
   linkText: string;
-  pathname: Route["pathname"];
-  query?: Query;
+  href: Route;
+  setActiveItem: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const NavItem: React.FC<NavItemProps> = ({
-  itemIsActive,
-  setActiveNavItem,
   linkText,
-  pathname,
-  query,
+  href,
+  itemIsActive,
+  setActiveItem,
 }: NavItemProps) => {
   return (
     <div
       className={`${styles.navitem} ${itemIsActive && styles.navItem__active}`}
     >
-      <Link
-        href={{
-          pathname,
-          query,
-        }}
-        passHref
-      >
-        <a onClick={() => setActiveNavItem(linkText.toLowerCase())}>
-          {linkText}
-        </a>
+      <Link href={href} passHref>
+        <a onClick={() => setActiveItem(linkText)}>{linkText}</a>
       </Link>
     </div>
   );
