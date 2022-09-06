@@ -12,7 +12,7 @@ const ChallengeList = ({ challenges }: ChallengeListProps) => {
     <ul className={`${styles.challengeList}`}>
       {challenges.length > 0 ? (
         challenges.map((challenge) => (
-          <li>
+          <li key={challenge.title}>
             <Link href={challenge.href} passHref>
               <a>{challenge.title}</a>
             </Link>
