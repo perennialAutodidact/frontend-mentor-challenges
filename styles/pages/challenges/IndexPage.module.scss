@@ -5,6 +5,5 @@
 }
 
 .challengeList {
-    @include flex($direction: column) //$justify-content: flex-start);
-
+    @include flex($direction: column);
 }

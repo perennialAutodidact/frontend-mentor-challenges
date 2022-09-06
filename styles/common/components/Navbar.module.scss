@@ -2,9 +2,14 @@
     background-color: whitesmoke;
     width: 100%;
     display: flex;
-    gap: 20px;
+    gap: 10px;
     box-shadow: 0px -5px 30px gray;
     position: relative;
+
+    .navitems {
+        display: flex;
+        justify-content: space-around;
+    }
 
     .navitem {
         font-size: 2rem;
@@ -39,4 +44,11 @@
         width: 100%;
         background-color: darkslateblue;
     }
+}
+
+@media (min-width: 1440px) {
+    .navbar {
+        gap: 5px;
+    }
+
 }
