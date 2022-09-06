@@ -4,6 +4,7 @@ import Form from "components/CCForm/Form";
 import Layout from "common/components/Layout";
 import Card from "components/CCForm/Card";
 import CompletionCard from "components/CCForm/CompletionCard";
+import ProjectInfo from "common/components/ProjectInfo";
 
 const CcDetailForm = () => {
   const [formComplete, setFormComplete] = useState<boolean>(false);
@@ -28,6 +29,7 @@ const CcDetailForm = () => {
           )}
         </div>
       </div>
+      <ProjectInfo />
     </Layout>
   );
 };
