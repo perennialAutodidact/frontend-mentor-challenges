@@ -25,7 +25,7 @@
 - Media Queries
 */
 
-
+@import './variables';
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
@@ -213,7 +213,7 @@
 
     .three-columns-lg {
         width: 30%;
-        margin: 0 1%;
+        margin: 0 1.5%;
         display: inline-block;
     }
 
@@ -227,6 +227,12 @@
 
     .six.columns {
         width: 48%;
+    }
+
+    .six-columns-lg {
+        width: 48%;
+        margin: 0 1%;
+        display: inline-block;
     }
 
     .seven.columns {
@@ -279,6 +285,10 @@
 
     .offset-by-three.column,
     .offset-by-three.columns {
+        margin-left: 26%;
+    }
+
+    .offset-three-lg {
         margin-left: 26%;
     }
 
@@ -443,13 +453,13 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-    color: #1EAEDB;
+    color: $linkColor;
     font-size: 2rem;
     text-decoration: none;
 }
 
 a:hover {
-    color: #0FA0CE;
+    color: $linkColor__hover;
     text-decoration: underline;
 }
 
