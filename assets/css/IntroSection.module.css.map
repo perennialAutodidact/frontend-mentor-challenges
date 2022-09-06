@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA,OAAO,CAAC,kFAAI",
+    "sources": [
+        "../../styles/pages/IntroSection/IntroSection.module.scss",
+        "../../styles/pages/IntroSection/_variables.scss"
+    ],
+    "names": [],
+    "file": "IntroSection.module.css"
+}
