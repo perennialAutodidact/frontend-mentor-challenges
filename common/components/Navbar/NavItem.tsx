@@ -7,21 +7,22 @@ interface NavItemProps {
   itemIsActive: boolean;
   linkText: string;
   href: Route;
-  setActiveItem: React.Dispatch<React.SetStateAction<string>>;
+  changeActiveItem: React.MouseEventHandler;
 }
 
 const NavItem: React.FC<NavItemProps> = ({
   linkText,
   href,
   itemIsActive,
-  setActiveItem,
+  changeActiveItem,
 }: NavItemProps) => {
   return (
     <div
       className={`${styles.navitem} ${itemIsActive && styles.navItem__active}`}
+      onClick={e=>console.log('target',e.target)}
     >
       <Link href={href} passHref>
-        <a onClick={() => setActiveItem(linkText)}>{linkText}</a>
+        <a >{linkText}</a>
       </Link>
     </div>
   );

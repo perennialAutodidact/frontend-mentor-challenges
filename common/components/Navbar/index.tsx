@@ -4,8 +4,10 @@ import NavItem from "./NavItem";
 import { Route } from "nextjs-routes";
 
 const Navbar = () => {
-  const [activeItem, setActiveItem] = useState<string>("Home");
-
+  const [activeItem, setActiveItem] = useState<string>("");
+  const changeActiveItem = (e: React.MouseEvent) => {
+    console.log(e.target);
+  };
   return (
     <nav className={styles.navbar}>
       <div className={styles.navitems}>
@@ -14,7 +16,7 @@ const Navbar = () => {
             linkText={navItem.linkText}
             href={navItem.href}
             itemIsActive={navItem.itemIsActive(activeItem, navItem.linkText)}
-            setActiveItem={setActiveItem}
+            changeActiveItem={changeActiveItem}
             key={navItem.linkText}
           />
         ))}
