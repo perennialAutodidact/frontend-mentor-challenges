@@ -16,15 +16,15 @@ const ProjectInfo: React.FC<ProjectInfoProps> = ({
         <h4>Users should be able to</h4>
 
         <ul>
-          {challengeCriteria.map((criterion) =>
+          {challengeCriteria.map((criterion,i) =>
             Array.isArray(criterion) ? (
               <ul>
-                {criterion.map((item, i) => (
-                  <li key={`item-${i}`}>{item}</li>
+                {criterion.map((subcriterion, j) => (
+                  <li key={`subcriterion-${j}`}>{subcriterion}</li>
                 ))}
               </ul>
             ) : (
-              <li>{criterion}</li>
+              <li key={`criterion-${i}`}>{criterion}</li>
             )
           )}
         </ul>
@@ -56,7 +56,7 @@ const ProjectInfo: React.FC<ProjectInfoProps> = ({
             <h4>Breakpoints</h4>
             <ul>
               {styleGuide.breakpoints.map((breakpoint) => (
-                <li key={breakpoint.size}>
+                <li key={breakpoint.name}>
                   {breakpoint.name} - {breakpoint.size}
                 </li>
               ))}
