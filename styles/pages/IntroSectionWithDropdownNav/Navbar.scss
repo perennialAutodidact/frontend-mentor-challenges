@@ -4,6 +4,8 @@
 .navbar {
     @include flex($justify-content: space-between);
     padding: 10px 25px;
+
+    position: relative;
 }
 
 .hamburgerIcon:hover {
@@ -15,6 +17,9 @@
 }
 
 .navItem {
+    @include flex($align-items:center);
+    gap: 15px;
+    
     color: $mediumGray;
 }
 

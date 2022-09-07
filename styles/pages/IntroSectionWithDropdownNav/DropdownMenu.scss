@@ -1,0 +1,21 @@
+@import './variables';
+@import '../../common/mixins';
+
+.dropdownMenu {
+    @include flex($direction: column);
+    gap: 15px;
+    
+    padding: 0 25px;
+
+    width: 100%;
+}
+
+
+.dropdownItem {
+    @include flex($align-items:center);
+    gap: 10px;
+}
+
+.dropdownIcon {
+    @include flex($align-items:center);
+}
