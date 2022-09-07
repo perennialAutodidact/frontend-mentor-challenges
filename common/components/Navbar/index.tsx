@@ -3,10 +3,11 @@ import styles from "styles/common/components/Navbar.module.scss";
 import NavItem from "./NavItem";
 import { Route } from "nextjs-routes";
 import { useRouter } from "next/router";
+
 const Navbar = () => {
   const router = useRouter();
   const [activeItem, setActiveItem] = useState<string>("");
-  console.log();
+  
   return (
     <nav className={styles.navbar}>
       <div className={styles.navitems}>
