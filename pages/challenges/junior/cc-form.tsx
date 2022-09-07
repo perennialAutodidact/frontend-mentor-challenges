@@ -23,7 +23,6 @@ export const getServerSideProps: GetServerSideProps = async (
   return {
     props: {
       challengeCriteria,
-
       styleGuide,
     },
   };
@@ -37,6 +36,7 @@ const CcDetailForm = ({ challengeCriteria, styleGuide }: ProjectInfoProps) => {
     { title: "Mobile Design", file: mobileDesign },
     { title: "Mobile Complete State", file: mobileCompleteState },
   ];
+
   const [formComplete, setFormComplete] = useState<boolean>(false);
   const toggleComplete = (e: React.FormEvent<any>) => {
     setFormComplete((formComplete) => !formComplete);
