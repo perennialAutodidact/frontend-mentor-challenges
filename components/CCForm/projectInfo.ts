@@ -22,14 +22,6 @@ export const challengeCriteria: ChallengeCriteria = [
   "See hover, active, and focus states for interactive elements on the page",
 ];
 
-export const designImages: DesignImage[] = [
-  { title: "Desktop Design", file: desktopDesign },
-  { title: "Active States", file: activeStates },
-  { title: "Desktop Complete State", file: desktopCompleteState },
-  { title: "Mobile Design", file: mobileDesign },
-  { title: "Mobile Complete State", file: mobileCompleteState },
-];
-
 export const styleGuide: StyleGuide = {
   breakpoints: [
     { name: "Small", size: "375px" },
@@ -46,7 +38,7 @@ export const styleGuide: StyleGuide = {
       name: "Linear Gradient",
       style: {
         background:
-          "linear-gradient(90deg, hsl(249, 99%, 64%) 60%, hsl(278, 93%, 30%) 80%);",
+          "linear-gradient(90deg, hsl(249, 99%, 64%) 60%, hsl(278, 93%, 30%) 80%)",
       },
     },
     {
@@ -74,8 +66,7 @@ export const styleGuide: StyleGuide = {
   ],
 };
 
-export const CcFormProjectInfo: ProjectInfoProps = {
+export const CcFormProjectInfo: Partial<ProjectInfoProps> = {
   challengeCriteria,
-  designImages,
   styleGuide,
 };
