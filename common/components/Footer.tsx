@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import styles from "styles/pages/Home.module.scss";
-import mandalaImg from "public/images/mandala.png";
+import mandalaImg from "public/images/mandala.svg";
 
 const Footer = () => {
   return (
