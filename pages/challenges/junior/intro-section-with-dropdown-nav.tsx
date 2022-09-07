@@ -11,6 +11,7 @@ import mobileMenuCollapsed from "components/IntroSectionWithDropDownNav/starterC
 import mobileMenuExpanded from "components/IntroSectionWithDropDownNav/starterCode/design/mobile-menu-expanded.jpg";
 import Navbar from "components/IntroSectionWithDropDownNav/Navbar";
 import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
+import MobileNav from "components/IntroSectionWithDropDownNav/Navbar/MobileNav";
 
 type IntroSectionWithDropdownNavProps = {
   title: string;
@@ -41,6 +42,7 @@ const IntroSectionWithDropdownNav = ({
   return (
     <Layout title={title} description={description}>
       <section className={`container-fluid ${styles.pageContainer}`}>
+        <MobileNav/>
         <Navbar />
         <div></div>
       </section>
