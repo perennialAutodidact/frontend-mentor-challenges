@@ -1,0 +1,83 @@
+@import '../../common/variables';
+@import './variables';
+@import '../../common/mixins';
+@import './DropdownMenu.scss';
+
+.navbarMobile {
+    @include flex($justify-content: space-between);
+
+    padding: 10px 25px;
+
+    position: relative;
+}
+
+.sideNav {
+    @include font-face($introPage__font, $weight: 500, $size: 1.5rem);
+
+    height: $sideNav__height;
+    width: 50%; 
+
+    padding: $sideNav__padding__y calc($sideNav__padding__x + 50px) $sideNav__padding__y $sideNav__padding__x;
+
+    background-color: $almostWhite;
+
+    position: absolute;
+    top: 0;
+    right: -100%;
+    z-index: 3
+}
+
+.sideNavBackdrop {
+    height: $sideNav__height;
+    width: 100%;
+
+    padding: $sideNav__padding__y 0;
+
+    background-color: $almostBlack;
+    
+    opacity: .6;
+
+    position: absolute;
+    top:0;
+    left: -100%;
+    z-index: 1;
+
+}
+
+.closeNavButton {
+    @include flex($justify-content: flex-end);
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.navItems {
+    @include flex($direction: column);
+    gap: 15px;
+
+    width: 100%;
+}
+
+.navItem {
+    @include flex($direction: column);
+    color: $mediumGray;
+}
+
+
+.authLinks {
+    @include flex($direction: column, $align-items:center);
+    gap: 15px;
+
+    width: 100%;
+    margin-top: 15px;
+}
+
+.registerButton {
+    width: 80%;
+    padding: 10px;
+
+    border: 1px solid $mediumGray;
+    border-radius: 15px;
+    
+    color: $mediumGray;
+    text-align: center;
+}

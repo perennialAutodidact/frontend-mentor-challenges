@@ -1,20 +1,19 @@
 @import './variables';
 @import '../../common/mixins';
 
-.navbar {
+.navbarDesktop {
     @include flex($justify-content: space-between);
     padding: 10px 25px;
 
     position: relative;
+    display: none;
 }
+
 
 .hamburgerIcon:hover {
     cursor: pointer;
 }
 
-.navItems {
-    display: none;
-}
 
 .navItem {
     @include flex($align-items:center);
@@ -24,5 +23,7 @@
 }
 
 @media (min-width: 1440px) {
-    .navbar {}
+    .navbar {
+        @include flex();
+    }
 }
