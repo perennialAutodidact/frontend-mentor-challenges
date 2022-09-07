@@ -11,6 +11,13 @@ import {
   ProjectInfoProps,
 } from "ts/interfaces/projectInfo";
 
+const designImages: DesignImage[] = [
+  { title: "Desktop Design", file: desktopDesign },
+  { title: "Active States", file: activeStates },
+  { title: "Desktop Complete State", file: desktopCompleteState },
+  { title: "Mobile Design", file: mobileDesign },
+  { title: "Mobile Complete State", file: mobileCompleteState },
+];
 export const challengeCriteria: ChallengeCriteria = [
   "Fill in the form and see the card details update in real-time",
   "Receive error messages when the form is submitted if:",
@@ -66,7 +73,8 @@ export const styleGuide: StyleGuide = {
   ],
 };
 
-export const CcFormProjectInfo: Partial<ProjectInfoProps> = {
+export const CcFormProjectInfo: ProjectInfoProps = {
   challengeCriteria,
+  designImages,
   styleGuide,
 };
