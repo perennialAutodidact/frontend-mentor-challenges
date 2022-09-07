@@ -1,0 +1,12 @@
+@import './variables';
+@import './Navbar';
+@import '../../common/mixins';
+
+.pageContainer {
+    @include font-face($introPageFont);
+    min-height: 100vh;
+    margin-top: 30px;
+
+    border-bottom: 1px solid darkgray;
+
+}

@@ -1,0 +1,23 @@
+@import './variables';
+@import '../../common/mixins';
+
+.navbar {
+    @include flex($justify-content: space-between);
+    padding: 10px 25px;
+}
+
+.hamburgerIcon:hover {
+    cursor: pointer;
+}
+
+.navItems {
+    display: none;
+}
+
+.navItem {
+    color: $mediumGray;
+}
+
+@media (min-width: 1440px) {
+    .navbar {}
+}
