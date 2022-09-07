@@ -42,8 +42,8 @@ const IntroSectionWithDropdownNav = ({
   return (
     <Layout title={title} description={description}>
       <section className={`container-fluid ${styles.pageContainer}`}>
-        <MobileNav/>
         <Navbar />
+        <MobileNav />
         <div></div>
       </section>
       <ProjectInfo {...projectInfo} />
