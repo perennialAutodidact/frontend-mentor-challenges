@@ -1,14 +1,16 @@
 @import './variables';
-@import './Navbar';
-@import './MobileNav';
-@import './DropdownMenu.scss';
+@import './NavDesktop';
+@import './NavMobile';
 @import '../../common/mixins';
 
 .pageContainer {
-    @include font-face($introPageFont);
-    min-height: calc(100vh - $navbar__height);
-    margin-top: 30px;
+    @include font-face($introPage__font);
+    min-height: $introPage__height;
+    margin: $introPage__margin__y 0;
 
     border-bottom: 1px solid darkgray;
 
+    overflow-x: hidden;
+
+    position: relative;
 }

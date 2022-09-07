@@ -1,9 +1,23 @@
+@import '../../common/variables';
 @import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap');
 
-$introPageFont: 'Epilogue', sans-serif;
 
 $almostWhite: hsl(0, 0%, 98%);
 $mediumGray: hsl(0, 0%, 41%);
 $almostBlack: hsl(0, 0%, 8%);
 
 $fontSize__paragraph: 18px;
+
+$introPage__font: 'Epilogue', sans-serif;
+
+$introPage__height: calc(100vh - $navbar__height);
+
+$introPage__margin__y: 20px;
+
+
+// Side Nav
+
+$sideNav__padding__y: calc($introPage__margin__y/2);
+$sideNav__padding__x: calc($sideNav__padding__y * 3);
+
+$sideNav__height: calc($introPage__height - $introPage__margin__y - $sideNav__padding__y);
