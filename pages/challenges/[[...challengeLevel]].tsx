@@ -14,7 +14,7 @@ interface ChallengesIndexPageProps {
   title: string;
   description: string;
   challengeData: ChallengeData;
-  challengeLevel: ChallengeLevel;
+  challengeLevel: ChallengeLevel | "all";
 }
 
 export const getServerSideProps: GetServerSideProps = async (
@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (
 
     if (challengeLevel && challengeLevel in ALL_CHALLENGE_INDEX_PAGE_DATA) {
       props = {
-        ...ALL_CHALLENGE_INDEX_PAGE_DATA[challengeLevel],
+        ...ALL_CHALLENGE_INDEX_PAGE_DATA[challengeLevel as ChallengeLevel],
         challengeLevel: challengeLevel as ChallengeLevel,
       };
     }
@@ -63,7 +63,7 @@ const ChallengesIndexPage = ({
         <div className={`row`}>
           {challengeLevel === "all" ? (
             challengeKeys.map((key) => (
-              <div className="twelve-columns-sm three-columns-lg">
+              <div className="twelve-columns-sm three-columns-lg" key={key}>
                 <h3>{titleize(key)}</h3>
                 <ChallengeList
                   challenges={challengeData[key as ChallengeLevel]}
