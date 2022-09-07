@@ -5,8 +5,29 @@ import Layout from "common/components/Layout";
 import Card from "components/CCForm/Card";
 import CompletionCard from "components/CCForm/CompletionCard";
 import ProjectInfo from "common/components/ProjectInfo";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { ProjectInfoProps } from "ts/interfaces/projectInfo";
+import { CcFormProjectInfo } from "components/CCForm/projectInfo";
 
-const CcDetailForm = () => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { challengeCriteria, designImages, styleGuide } = CcFormProjectInfo;
+
+  return {
+    props: {
+      challengeCriteria,
+      designImages,
+      styleGuide,
+    },
+  };
+};
+
+const CcDetailForm = ({
+  challengeCriteria,
+  designImages,
+  styleGuide,
+}: ProjectInfoProps) => {
   const [formComplete, setFormComplete] = useState<boolean>(false);
   const toggleComplete = (e: React.FormEvent<any>) => {
     setFormComplete((formComplete) => !formComplete);
@@ -29,7 +50,11 @@ const CcDetailForm = () => {
           )}
         </div>
       </div>
-      <ProjectInfo />
+      <ProjectInfo
+        challengeCriteria={challengeCriteria}
+        designImages={designImages}
+        styleGuide={styleGuide}
+      />
     </Layout>
   );
 };
