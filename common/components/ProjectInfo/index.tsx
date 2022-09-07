@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "styles/common/components/ProjectInfo.module.scss";
 import Image from "next/image";
-import {
-  DESIGN_IMAGES,
-  STYLE_GUIDE,
-  CHALLENGE_CRITERIA,
-} from "components/CCForm/projectInfo";
 import { BsCheckCircle } from "react-icons/bs";
-const ProjectInfo = () => {
+import { ProjectInfoProps } from "ts/interfaces/projectInfo";
+
+const ProjectInfo: React.FC<ProjectInfoProps> = ({
+  challengeCriteria,
+  designImages,
+  styleGuide,
+}: ProjectInfoProps) => {
   return (
     <section className={`container-fluid ${styles.projectInfoSection}`}>
       <div className="twelve-columns-sm eight-columns-lg offset-two-lg">
@@ -15,7 +16,7 @@ const ProjectInfo = () => {
         <h4>Users should be able to</h4>
 
         <ul>
-          {CHALLENGE_CRITERIA.map((criterion) =>
+          {challengeCriteria.map((criterion) =>
             Array.isArray(criterion) ? (
               <ul>
                 {criterion.map((item, i) => (
@@ -32,7 +33,7 @@ const ProjectInfo = () => {
       <div className="twelve-columns-sm eight-columns-lg offset-two-lg">
         <h1 className={`${styles.textRight}`}>The Design</h1>
         <div className={`${styles.designImages}`}>
-          {DESIGN_IMAGES.map((image) => (
+          {designImages.map((image) => (
             <div className={`${styles.designImage}`} key={image.title}>
               <h5 className={styles.textRight}>{image.title}</h5>
               <Image
@@ -53,7 +54,7 @@ const ProjectInfo = () => {
           <div className={`${styles.styleSection}`}>
             <h4>Breakpoints</h4>
             <ul>
-              {STYLE_GUIDE.breakpoints.map((breakpoint) => (
+              {styleGuide.breakpoints.map((breakpoint) => (
                 <li key={breakpoint.size}>
                   {breakpoint.name} - {breakpoint.size}
                 </li>
@@ -64,7 +65,7 @@ const ProjectInfo = () => {
           <div className={`${styles.styleSection}`}>
             <h4 className={""}>Fonts</h4>
             <ul>
-              {STYLE_GUIDE.fonts.map((font) => (
+              {styleGuide.fonts.map((font) => (
                 <li key={font.name} style={font.style}>
                   <h5>{font.name}</h5>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
@@ -76,7 +77,7 @@ const ProjectInfo = () => {
           <div className={styles.styleSection}>
             <h4>Colors</h4>
             <div className={styles.colorSwatches}>
-              {STYLE_GUIDE.colors.map((color) => (
+              {styleGuide.colors.map((color) => (
                 <div className={styles.colorSwatch} key={color.name}>
                   <span>{color.name}</span>
                   <span className={styles.box} style={color.style}></span>
