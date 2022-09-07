@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import styles from "styles/common/components/Navbar.module.scss";
 import NavItem from "./NavItem";
 import { Route } from "nextjs-routes";
-
+import { useRouter } from "next/router";
 const Navbar = () => {
+  const router = useRouter();
   const [activeItem, setActiveItem] = useState<string>("");
-  const changeActiveItem = (e: React.MouseEvent) => {
-    console.log(e.target);
-  };
+  console.log();
   return (
     <nav className={styles.navbar}>
       <div className={styles.navitems}>
@@ -15,8 +14,10 @@ const Navbar = () => {
           <NavItem
             linkText={navItem.linkText}
             href={navItem.href}
-            itemIsActive={navItem.itemIsActive(activeItem, navItem.linkText)}
-            changeActiveItem={changeActiveItem}
+            itemIsActive={navItem.itemIsActive(
+              router.pathname,
+              navItem.href.pathname
+            )}
             key={navItem.linkText}
           />
         ))}
@@ -28,11 +29,11 @@ const Navbar = () => {
 interface NavItem {
   linkText: string;
   href: Route;
-  itemIsActive(activeItem: string, linkText: string): boolean;
+  itemIsActive(currentPath: string, linkPath: string): boolean;
 }
 
-const isActiveItem = (activeItem: string, linkText: string) => {
-  return activeItem === linkText;
+const isActiveItem = (currentPath: string, linkPath: string) => {
+  return currentPath === linkPath;
 };
 
 const NAV_ITEMS: NavItem[] = [
