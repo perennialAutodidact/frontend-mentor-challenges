@@ -1,6 +1,6 @@
 import { Route, Query } from "nextjs-routes";
 
-export type ChallengeLevel = "newbie" | "junior" | "intermediate" | "all";
+export type ChallengeLevel = "newbie" | "junior" | "intermediate";
 
 export type ChallengeData = {
   [key in ChallengeLevel]: Challenge[];
