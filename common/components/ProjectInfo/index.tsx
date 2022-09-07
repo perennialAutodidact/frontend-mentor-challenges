@@ -39,8 +39,9 @@ const ProjectInfo: React.FC<ProjectInfoProps> = ({
               <Image
                 src={image.file.src}
                 alt={image.title}
-                width={image.file.width}
                 height={image.file.height}
+                width={image.file.width}
+                blurDataURL={image.file.blurDataURL}
               />
             </div>
           ))}
