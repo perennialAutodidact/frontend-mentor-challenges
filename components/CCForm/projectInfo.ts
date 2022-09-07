@@ -4,20 +4,25 @@ import activeStates from "components/CCForm/starterCode/design/active-states.jpg
 import desktopCompleteState from "components/CCForm/starterCode/design/complete-state-desktop.jpg";
 import mobileCompleteState from "components/CCForm/starterCode/design/complete-state-mobile.jpg";
 
-type NestedArray<T> = Array<T> | Array<NestedArray<T>>
+import {
+  StyleGuide,
+  ChallengeCriteria,
+  DesignImage,
+  ProjectInfoProps,
+} from "ts/interfaces/projectInfo";
 
-export const CHALLENGE_CRITERIA: (string | string[])[] = [
+export const challengeCriteria: ChallengeCriteria = [
   "Fill in the form and see the card details update in real-time",
   "Receive error messages when the form is submitted if:",
   [
     "Any input field is empty",
-    "The card number, expiry date, or CVC fields are in the wrong format."
+    "The card number, expiry date, or CVC fields are in the wrong format.",
   ],
   "View the optimal layout depending on their device&apos;s screen size",
-  "See hover, active, and focus states for interactive elements on the page"
-]
+  "See hover, active, and focus states for interactive elements on the page",
+];
 
-export const DESIGN_IMAGES = [
+export const designImages: DesignImage[] = [
   { title: "Desktop Design", file: desktopDesign },
   { title: "Active States", file: activeStates },
   { title: "Desktop Complete State", file: desktopCompleteState },
@@ -25,7 +30,7 @@ export const DESIGN_IMAGES = [
   { title: "Mobile Complete State", file: mobileCompleteState },
 ];
 
-export const STYLE_GUIDE = {
+export const styleGuide: StyleGuide = {
   breakpoints: [
     { name: "Small", size: "375px" },
     { name: "Large", size: "1,440px" },
@@ -33,20 +38,44 @@ export const STYLE_GUIDE = {
   fonts: [
     {
       name: "Space Grotesk",
-      style: {fontFamily: "'Space Grotesk', sans-serif"},
+      style: { fontFamily: "'Space Grotesk', sans-serif" },
     },
   ],
   colors: [
     {
       name: "Linear Gradient",
-      style: {background: "linear-gradient(90deg, hsl(249, 99%, 64%) 60%, hsl(278, 93%, 30%) 80%);"},
+      style: {
+        background:
+          "linear-gradient(90deg, hsl(249, 99%, 64%) 60%, hsl(278, 93%, 30%) 80%);",
+      },
     },
-    { name: "White", style: {backgroundColor: "hsl(0, 0%, 100%)", border: "2px dashed darkgrey"}},
-    { name: "Light Grayish Violet", style: {backgroundColor: "hsl(270, 3%, 87%)"}},
-    { name: "Dark Grayish Violet", style: {backgroundColor: "hsl(279, 6%, 55%)"}},
-    { name: "Very Dark Violet", style: {backgroundColor: "hsl(278, 68%, 11%)"}},
-    { name: "Error Red", style: {backgroundColor: "hsl(0, 47%, 46%)"}},
-    { name: "Indigo", style: {backgroundColor: "hsl(249, 99%, 64%)"}},
-    { name: "Violet", style: {backgroundColor: "hsl(278, 93%, 30%)"}},
+    {
+      name: "White",
+      style: {
+        backgroundColor: "hsl(0, 0%, 100%)",
+        border: "2px dashed darkgrey",
+      },
+    },
+    {
+      name: "Light Grayish Violet",
+      style: { backgroundColor: "hsl(270, 3%, 87%)" },
+    },
+    {
+      name: "Dark Grayish Violet",
+      style: { backgroundColor: "hsl(279, 6%, 55%)" },
+    },
+    {
+      name: "Very Dark Violet",
+      style: { backgroundColor: "hsl(278, 68%, 11%)" },
+    },
+    { name: "Error Red", style: { backgroundColor: "hsl(0, 47%, 46%)" } },
+    { name: "Indigo", style: { backgroundColor: "hsl(249, 99%, 64%)" } },
+    { name: "Violet", style: { backgroundColor: "hsl(278, 93%, 30%)" } },
   ],
+};
+
+export const CcFormProjectInfo: ProjectInfoProps = {
+  challengeCriteria,
+  designImages,
+  styleGuide,
 };
