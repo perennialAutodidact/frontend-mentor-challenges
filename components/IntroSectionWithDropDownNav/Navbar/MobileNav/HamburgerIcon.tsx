@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
-import hamburgerIcon from "../starterCode/images/icon-menu.svg";
+import hamburgerIcon from "components/IntroSectionWithDropDownNav/starterCode/images/icon-menu.svg";
 
 interface HamburgerIconProps {
   toggleMobileNav: React.MouseEventHandler;
