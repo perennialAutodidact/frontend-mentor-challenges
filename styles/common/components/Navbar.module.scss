@@ -1,6 +1,8 @@
+@import '../../common/variables';
 .navbar {
     background-color: whitesmoke;
     width: 100%;
+    height: $navbar__height;
     display: flex;
     gap: 10px;
     box-shadow: 0px -5px 30px gray;
