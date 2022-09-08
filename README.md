@@ -1,34 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Mentor Challenge Solutions
 
-## Getting Started
+This site is a collection of solutions created by <a href="https://github.com/perennialautodidact">Keegan Good</a> to challenges posted on <a href="https://www.frontendmentor.io">frontendmentor.io</a>.
+</p>
+<p className={styles.paragraph}>
+They&apos;re created using <a href="https://nextjs.org/">NextJS</a> 
+and <a href="https://www.typescriptlang.org/">TypeScript</a> and
+styled mostly from scratch with <a href="https://sass-lang.com/">Sass</a> using <a href="http://getskeleton.com/">Skeleton CSS</a> as a
+foundation.
 
-First, run the development server:
+### Install dependencies and run
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ yarn install
+$ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Live Site
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+See the project in production [here](https://frontend-mentor-challenges-navy.vercel.app/).
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Completed Solutions
 
-## Learn More
+### Newbie
+No solutions yet...
+### Junior
+### [Credit Card Detail Form](https://frontend-mentor-challenges-navy.vercel.app/challenges/junior/cc-form)
+##### Desktop
+|Design|Active States|Completed State|
+|-|-|-|
+|<img width=600 src="./components/CCForm/starterCode/design/desktop-design.jpg"/>|<img width=600 src="./components/CCForm/starterCode/design/active-states.jpg"/>|<img width=600 src="./components/CCForm/starterCode/design/complete-state-desktop.jpg"/>|
 
-To learn more about Next.js, take a look at the following resources:
+##### Mobile
+|Design|Completed State|
+|-|-|
+|<img width=200 src="./components/CCForm/starterCode/design/mobile-design.jpg"/>|<img width=200 src="./components/CCForm/starterCode/design/complete-state-mobile.jpg"/>|
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### [Intro Section with Dropdown Nav](https://front-end-mentor-challenges-navy.vercel.app/challenges/junior/intro-section-with-dropdown-nav)
+##### Desktop
+|Design|Active States|
+|-|-|
+|<img width=600 src="./components/IntroSectionWithDropDownNav/starterCode/design/desktop-design.jpg"/>|<img width=600 src="./components/IntroSectionWithDropDownNav/starterCode/design/active-states.jpg"/>|
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+##### Mobile
+|Design|Menu Collapsed|Menu Expanded|
+|-|-|-|
+|<img width=200 src="./components/IntroSectionWithDropDownNav/starterCode/design/mobile-design.jpg"/>|<img width=200 src="./components/IntroSectionWithDropDownNav/starterCode/design/mobile-menu-collapsed.jpg"/>|<img width=200 src="./components/IntroSectionWithDropDownNav/starterCode/design/mobile-menu-expanded.jpg"/>|
+### Intermediate
+
+No solutions yet...
