@@ -9,6 +9,7 @@ import HamburgerIcon from "./HamburgerIcon";
 import {
   closeMobileNav,
   openMobileNav,
+  resetDropdowns
 } from "components/IntroSectionWithDropDownNav/store/actions";
 import { useMobileNavTimeline } from "components/IntroSectionWithDropDownNav/useMobileNavTimeline";
 
@@ -24,17 +25,19 @@ const NavbarMobile = () => {
     sideNavId,
     backdropId
   );
-  //   const tl = useRef<GSAPTimeline>();
 
-  const toggleMobileNav = (e: React.MouseEvent, callback?: Function) => {
-    console.log("toggleMobileNav", e);
-    dispatch(mobileNavIsOpen ? closeMobileNav() : openMobileNav());
-    callback && callback();
+
+  const toggleMobileNav = (e: React.MouseEvent) => {
+    if (mobileNavIsOpen) {
+      dispatch(closeMobileNav());
+    } else {
+      dispatch(openMobileNav());
+    }
   };
 
   useEffect(() => {
     mobileNavIsOpen ? mobileNavTimeline.play() : mobileNavTimeline.reverse();
-  }, [mobileNavIsOpen]);
+  }, [mobileNavIsOpen, mobileNavTimeline]);
 
   return (
     <div className={styles.navbarMobile} ref={mobileNavRef}>
