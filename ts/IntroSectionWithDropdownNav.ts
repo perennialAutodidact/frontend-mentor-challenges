@@ -1,14 +1,16 @@
 import { StaticImageData } from "next/image";
+import { v4 as uuidv4 } from "uuid";
+
 export interface NavbarState {
   mobileNavIsOpen: boolean;
-  openDropdownIds: Dropdown[];
-  dropdownTimeline: GSAPTimeline;
-  mobileNavTimeline: GSAPTimeline;
+  closeAllDropdowns: boolean;
+  openDropdownIds: string[];
 }
 
 export type IntroSectionNavItem = {
   text: string;
   dropdown: IntroSectionDropdownItem[];
+  uuid: string;
 };
 
 export type IntroSectionDropdownItem = {
@@ -21,22 +23,34 @@ export enum ReducerActionType {
   CLOSE_MOBILE_NAV,
   OPEN_DROPDOWN,
   CLOSE_DROPDOWN,
+  RESET_DROPDOWNS,
+  RESET_DROPDOWNS_COMPLETE,
 }
 
-export type Dropdown = Element;
+export type ResetDropdowns = {
+  type: ReducerActionType.RESET_DROPDOWNS;
+};
 
-export type OpenOrCloseDropdown = {
-  type: ReducerActionType.OPEN_DROPDOWN | ReducerActionType.CLOSE_DROPDOWN;
-  payload: {
-    dropdown: Dropdown;
-  };
+export type ResetDropdownsComplete = {
+  type: ReducerActionType.RESET_DROPDOWNS_COMPLETE;
 };
 
 export type OpenOrCloseMobileNav = {
   type: ReducerActionType.OPEN_MOBILE_NAV | ReducerActionType.CLOSE_MOBILE_NAV;
 };
 
-export type ReducerAction = OpenOrCloseDropdown | OpenOrCloseMobileNav;
+export type OpenOrCloseDropdown = {
+  type: ReducerActionType.OPEN_DROPDOWN | ReducerActionType.CLOSE_DROPDOWN;
+  payload: {
+    dropdownId: string;
+  };
+};
+
+export type ReducerAction =
+  | ResetDropdowns
+  | ResetDropdownsComplete
+  | OpenOrCloseDropdown
+  | OpenOrCloseMobileNav;
 
 export type NavbarContextType = [
   state: NavbarState,
