@@ -15,12 +15,10 @@ export const useDropdownTimeline = (
 
   function onComplete() {
     dispatch(openDropdown(dropdownId));
-    console.log("Complete");
   }
 
   function onReverseComplete() {
     dispatch(closeDropdown(dropdownId));
-    console.log("Reverse Complete");
   }
 
   const [dropdownTimeline, _] = useState<GSAPTimeline>(() =>
@@ -76,7 +74,6 @@ export const useDropdownTimeline = (
         );
     }
 
-    // dropdownIsOpen ? dropdownTimeline.play() : dropdownTimeline.reverse();
 
     // return () => {
     //   dropdownTimeline?.progress(0).kill();
