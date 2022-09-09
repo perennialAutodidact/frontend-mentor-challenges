@@ -8,10 +8,9 @@ import { navbarReducer } from "./reducer";
 import { gsap } from "gsap";
 
 export const initialState: NavbarState = {
-  mobileNavIsOpen: true,
-  openDropdownIds: [],
-  dropdownTimeline: gsap.timeline(),
-  mobileNavTimeline: gsap.timeline(),
+  mobileNavIsOpen: false,
+  closeAllDropdowns: false,
+  openDropdownIds: []
 };
 export const NavbarContext = createContext<NavbarContextType>([
   initialState,
