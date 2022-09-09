@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
+import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.module.scss";
 
 const AuthLinks = () => {
   return (
