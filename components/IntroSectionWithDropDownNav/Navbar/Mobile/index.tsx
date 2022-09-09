@@ -9,7 +9,6 @@ import HamburgerIcon from "./HamburgerIcon";
 import {
   closeMobileNav,
   openMobileNav,
-  resetDropdowns
 } from "components/IntroSectionWithDropDownNav/store/actions";
 import { useMobileNavTimeline } from "components/IntroSectionWithDropDownNav/useMobileNavTimeline";
 
