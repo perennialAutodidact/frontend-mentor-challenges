@@ -4,9 +4,10 @@
 .dropdownMenu {
     padding: 0 25px;
 
-    max-height: 0;
+    // max-height: 0;
+    max-height: 200;
     overflow-y: hidden;
-    opacity: 0;
+    // opacity: 0;
     width: 100%;
 }
 

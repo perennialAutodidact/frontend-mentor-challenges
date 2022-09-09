@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { gsap } from "gsap";
-import { IntroSectionNavItem } from "ts/types/challenges/IntroSectionWithDropDownNav";
+import { IntroSectionNavItem, Dropdown } from "ts/IntroSectionWithDropdownNav";
 import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.module.scss";
 import DropdownMenu from "../../Dropdown";
 import ArrowIcon from "./ArrowIcon";
+import { NavbarContext } from "components/IntroSectionWithDropDownNav/store";
+import { closeDropdown } from "components/IntroSectionWithDropDownNav/store/actions";
+import { useDropdownTimeline } from "components/IntroSectionWithDropDownNav/useDropdownTimeline";
 
 type IntroSectionNavItemProps = {
   toggleMobileNav: React.MouseEventHandler | null;
@@ -14,51 +17,33 @@ const NavItem = ({
   dropdown,
   toggleMobileNav,
 }: IntroSectionNavItemProps) => {
+  const [state, dispatch] = useContext(NavbarContext);
+  const { openDropdownIds } = state;
   const navItemRef = useRef(null);
-  let tl = useRef<GSAPTimeline>();
+  const hasDropdownItems = dropdown.length > 0;
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { dropdownTimeline, dropdownIsOpen } = useDropdownTimeline(
+    navItemRef,
+    navItemText
+  );
+  dropdownTimeline && dropdownTimeline.play();
+  setTimeout(() => {
+    dropdownTimeline && dropdownTimeline.reverse();
+  }, 2000);
+
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   const toggleDropdown: React.MouseEventHandler = (e: React.MouseEvent) => {
     setIsOpen((isOpen) => !isOpen);
   };
 
-  const hasDropdownItems = dropdown.length > 0;
-
   useEffect(() => {
-    const navItemSelector: gsap.utils.SelectorFunc =
-      gsap.utils.selector(navItemRef);
-    const featuresDropdown = navItemSelector(`#${navItemText}`);
-    const arrowIcon = navItemSelector(".arrow-icon");
-    tl.current = gsap.timeline();
-
-    if (tl.current) {
-      tl.current = gsap.timeline(); //{ defaults: { repeat: 100 } });
-      tl.current.progress(0).kill();
-
-      tl.current
-        .to(featuresDropdown, {
-          maxHeight: 200,
-          duration: 0.5,
-        })
-        .to(featuresDropdown, {
-          opacity: 1,
-          duration: 0.2,
-          delay: -0.3,
-        })
-        .to(arrowIcon, {
-          rotation: 180,
-          duration: 0.3,
-          delay: -0.5,
-        });
-    }
-  }, []);
-
-  useEffect(() => {
-    tl.current && (isOpen ? tl.current.play() : tl.current.reverse());
+    dropdownTimeline &&
+      (isOpen ? dropdownTimeline.play() : dropdownTimeline.reverse());
   }, [isOpen]);
 
   return (
     <div
+      id={hasDropdownItems ? navItemText : ""}
       className={styles.navItem}
       ref={navItemRef}
       onClick={(e) =>
@@ -76,7 +61,6 @@ const NavItem = ({
           isOpen={isOpen}
           toggleMobileNav={toggleMobileNav}
           toggleDropdown={toggleDropdown}
-          id={navItemText}
         />
       )}
     </div>

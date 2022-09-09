@@ -1,56 +1,47 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useContext, useRef, useEffect } from "react";
+import { NavbarContext } from "../../store";
 import NavItems from "../NavItems";
 import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.module.scss";
 import CloseButton from "./CloseButton";
 import Logo from "../NavItems/Logo";
 import HamburgerIcon from "./HamburgerIcon";
-import { gsap } from "gsap";
+
+import {
+  closeMobileNav,
+  openMobileNav,
+} from "components/IntroSectionWithDropDownNav/store/actions";
+import { useMobileNavTimeline } from "components/IntroSectionWithDropDownNav/useMobileNavTimeline";
+
+const sideNavId = "sideNav";
+const backdropId = "backdrop";
 
 const NavbarMobile = () => {
-  const navbarMobileRef = useRef(null);
-  const tl = useRef<GSAPTimeline>();
+  const [state, dispatch] = useContext(NavbarContext);
+  const { mobileNavIsOpen } = state;
+  const mobileNavRef = useRef(null);
+  const mobileNavTimeline = useMobileNavTimeline(
+    mobileNavRef,
+    sideNavId,
+    backdropId
+  );
+  //   const tl = useRef<GSAPTimeline>();
 
-  const [navIsOpen, setNavIsOpen] = useState<boolean>(false);
   const toggleMobileNav = (e: React.MouseEvent, callback?: Function) => {
     console.log("toggleMobileNav", e);
-    setNavIsOpen((navIsOpen) => !navIsOpen);
+    dispatch(mobileNavIsOpen ? closeMobileNav() : openMobileNav());
     callback && callback();
   };
 
   useEffect(() => {
-    const navbarSelector: gsap.utils.SelectorFunc =
-      gsap.utils.selector(navbarMobileRef);
-    let sideNav: ReturnType<typeof navbarSelector> = navbarSelector("#sideNav");
-    let backdrop: ReturnType<typeof navbarSelector> =
-      navbarSelector("#backdrop");
-    tl.current = gsap.timeline();
-    tl.current && tl.current.progress(0).kill();
-
-    tl.current
-      .to(sideNav, {
-        duration: 0.5,
-        right: "-50px",
-        ease: "back.inOut(1.7)",
-        immediateRender: false,
-      })
-      .to(backdrop, {
-        duration: 0.5,
-        xPercent: 100,
-        delay: -0.3,
-        immediateRender: false,
-      });
-  }, []);
-
-  useEffect(() => {
-    tl.current && (navIsOpen ? tl.current.play() : tl.current.reverse());
-  }, [navIsOpen]);
+    mobileNavIsOpen ? mobileNavTimeline.play() : mobileNavTimeline.reverse();
+  }, [mobileNavIsOpen]);
 
   return (
-    <div className={styles.navbarMobile} ref={navbarMobileRef}>
-      <div className={styles.sideNavBackdrop} id="backdrop"></div>
+    <div className={styles.navbarMobile} ref={mobileNavRef}>
+      <div className={styles.sideNavBackdrop} id={backdropId}></div>
       <Logo />
       <HamburgerIcon toggleMobileNav={toggleMobileNav} />
-      <div className={styles.sideNav} id="sideNav">
+      <div className={styles.sideNav} id={sideNavId}>
         <CloseButton toggleMobileNav={toggleMobileNav} />
         <NavItems toggleMobileNav={toggleMobileNav} />
       </div>

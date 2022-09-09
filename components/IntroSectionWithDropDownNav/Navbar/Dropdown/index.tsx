@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Dropdown/Menu.module.scss";
-import { IntroSectionDropdownItem } from "ts/types/challenges/IntroSectionWithDropDownNav";
+import { IntroSectionDropdownItem } from "ts/IntroSectionWithDropDownNav";
 import DropdownItem from "./Item";
 
 interface DropdownMenuProps {
@@ -8,7 +8,6 @@ interface DropdownMenuProps {
   isOpen: boolean;
   toggleMobileNav: React.MouseEventHandler | null;
   toggleDropdown: React.MouseEventHandler;
-  id: string;
 }
 
 const DropdownMenu = ({
@@ -16,11 +15,10 @@ const DropdownMenu = ({
   isOpen,
   toggleMobileNav,
   toggleDropdown,
-  id,
 }: DropdownMenuProps) => {
   return (
-    <nav className={styles.dropdownMenu} id={id}>
-      <div className={styles.dropdownMenuItems}>
+    <nav className={`${styles.dropdownMenu} dropdown`}>
+      <div className={`${styles.dropdownMenuItems}`}>
         {dropdownItems.map(({ icon, text }) => (
           <DropdownItem
             icon={icon}

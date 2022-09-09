@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useReducer, useContext } from "react";
+import {
+  NavbarContext,
+  initialState,
+} from "components/IntroSectionWithDropDownNav/store";
+import { navbarReducer } from "components/IntroSectionWithDropDownNav/store/reducer";
 import Layout from "common/components/Layout";
 import { ChallengeCriteria, ProjectInfoProps } from "ts/interfaces/projectInfo";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
@@ -18,6 +23,27 @@ type IntroSectionWithDropdownNavProps = {
   description: string;
 } & ProjectInfoProps;
 
+const IntroSectionWithDropdownNav = ({
+  title,
+  description,
+}: IntroSectionWithDropdownNavProps) => {
+  const [state, dispatch] = useReducer(navbarReducer, initialState);
+  return (
+    <NavbarContext.Provider value={[state, dispatch]}>
+      <Layout title={title} description={description}>
+        <section className={`container-fluid ${styles.pageContainer}`}>
+          {/* <Navbar /> */}
+          <MobileNav />
+          <div className={`row`}>
+            <div className=""></div>
+          </div>
+        </section>
+        <ProjectInfo {...projectInfo} />
+      </Layout>
+    </NavbarContext.Provider>
+  );
+};
+
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
@@ -34,23 +60,4 @@ export const getServerSideProps: GetServerSideProps = async (
     },
   };
 };
-
-const IntroSectionWithDropdownNav = ({
-  title,
-  description,
-}: IntroSectionWithDropdownNavProps) => {
-  return (
-    <Layout title={title} description={description}>
-      <section className={`container-fluid ${styles.pageContainer}`}>
-        {/* <Navbar /> */}
-        <MobileNav />
-        <div className={`row`}>
-          <div className=""></div>
-        </div>
-      </section>
-      <ProjectInfo {...projectInfo} />
-    </Layout>
-  );
-};
-
 export default IntroSectionWithDropdownNav;
