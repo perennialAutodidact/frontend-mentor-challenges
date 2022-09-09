@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Dropdown/Menu.module.scss";
-import { IntroSectionDropdownItem } from "ts/IntroSectionWithDropDownNav";
+import { IntroSectionDropdownItem } from "ts/IntroSectionWithDropdownNav";
 import DropdownItem from "./Item";
 
 interface DropdownMenuProps {
