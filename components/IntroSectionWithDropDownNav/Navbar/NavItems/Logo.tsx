@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../starterCode/images/logo.svg";
+import logo from "components/IntroSectionWithDropDownNav/starterCode/images/logo.svg";
 import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
 import Image from "next/image";
 

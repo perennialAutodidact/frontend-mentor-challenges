@@ -1,24 +1,28 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import NavItems from "../NavItems";
-import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
+import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.module.scss";
 import CloseButton from "./CloseButton";
-import Logo from "../Logo";
+import Logo from "../NavItems/Logo";
 import HamburgerIcon from "./HamburgerIcon";
 import { gsap } from "gsap";
 
 const NavbarMobile = () => {
   const navbarMobileRef = useRef(null);
   const tl = useRef<GSAPTimeline>();
-  
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const toggleMobileNav = (e: React.MouseEvent) => {
-    setIsOpen((isOpen) => !isOpen);
+
+  const [navIsOpen, setNavIsOpen] = useState<boolean>(false);
+  const toggleMobileNav = (e: React.MouseEvent, callback?: Function) => {
+    console.log("toggleMobileNav", e);
+    setNavIsOpen((navIsOpen) => !navIsOpen);
+    callback && callback();
   };
-  
+
   useEffect(() => {
-    const navbarSelector = gsap.utils.selector(navbarMobileRef);
-    let sideNav: ReturnType<typeof navbarSelector> = navbarSelector('#sideNav');
-    let backdrop: ReturnType<typeof navbarSelector> = navbarSelector('#backdrop');
+    const navbarSelector: gsap.utils.SelectorFunc =
+      gsap.utils.selector(navbarMobileRef);
+    let sideNav: ReturnType<typeof navbarSelector> = navbarSelector("#sideNav");
+    let backdrop: ReturnType<typeof navbarSelector> =
+      navbarSelector("#backdrop");
     tl.current = gsap.timeline();
     tl.current && tl.current.progress(0).kill();
 
@@ -26,7 +30,7 @@ const NavbarMobile = () => {
       .to(sideNav, {
         duration: 0.5,
         right: "-50px",
-        ease: "back.inOut(1.2)",
+        ease: "back.inOut(1.7)",
         immediateRender: false,
       })
       .to(backdrop, {
@@ -38,8 +42,8 @@ const NavbarMobile = () => {
   }, []);
 
   useEffect(() => {
-    tl.current && (isOpen ? tl.current.play() : tl.current.reverse());
-  }, [isOpen]);
+    tl.current && (navIsOpen ? tl.current.play() : tl.current.reverse());
+  }, [navIsOpen]);
 
   return (
     <div className={styles.navbarMobile} ref={navbarMobileRef}>
@@ -48,7 +52,7 @@ const NavbarMobile = () => {
       <HamburgerIcon toggleMobileNav={toggleMobileNav} />
       <div className={styles.sideNav} id="sideNav">
         <CloseButton toggleMobileNav={toggleMobileNav} />
-        <NavItems />
+        <NavItems toggleMobileNav={toggleMobileNav} />
       </div>
     </div>
   );

@@ -1,0 +1,23 @@
+@import '../../../../common/variables';
+@import '../../../../common/mixins';
+
+.dropdownMenu {
+    padding: 0 25px;
+
+    max-height: 0;
+    overflow-y: hidden;
+    opacity: 0;
+    width: 100%;
+}
+
+.dropdownMenuItems {
+    @include flex($direction: column);
+    gap: 15px
+}
+
+
+
+
+@media (min-width: 1440px) {
+    .dropdownMenuItems {}
+}

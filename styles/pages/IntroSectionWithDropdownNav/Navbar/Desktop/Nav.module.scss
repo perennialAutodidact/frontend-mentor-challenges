@@ -1,8 +1,8 @@
 @import './variables';
 @import '../../common/mixins';
 
+
 .navbarDesktop {
-    @include flex($justify-content: space-between);
     padding: 10px 25px;
 
     position: relative;
@@ -16,14 +16,22 @@
 
 
 .navItem {
-    @include flex($align-items:center);
+    @include flex($align-items: center);
     gap: 15px;
-    
+
     color: $mediumGray;
 }
 
 @media (min-width: 1440px) {
-    .navbar {
-        @include flex();
+    .navbarDesktop {
+        @include flex($justify-content: space-between);
     }
+
+    .navItems {
+        // @include flex($direction: row, $justify-content: space-between);
+        // flex-direction: row;
+    }
+
+
+
 }

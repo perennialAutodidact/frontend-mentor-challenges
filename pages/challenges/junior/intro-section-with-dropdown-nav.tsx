@@ -9,9 +9,9 @@ import mobileDesign from "components/IntroSectionWithDropDownNav/starterCode/des
 import activeStates from "components/IntroSectionWithDropDownNav/starterCode/design/active-states.jpg";
 import mobileMenuCollapsed from "components/IntroSectionWithDropDownNav/starterCode/design/mobile-menu-collapsed.jpg";
 import mobileMenuExpanded from "components/IntroSectionWithDropDownNav/starterCode/design/mobile-menu-expanded.jpg";
-import Navbar from "components/IntroSectionWithDropDownNav/Navbar";
+import DesktopNav from "components/IntroSectionWithDropDownNav/Navbar/Desktop";
 import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
-import MobileNav from "components/IntroSectionWithDropDownNav/Navbar/MobileNav";
+import MobileNav from "components/IntroSectionWithDropDownNav/Navbar/Mobile";
 
 type IntroSectionWithDropdownNavProps = {
   title: string;
@@ -42,9 +42,11 @@ const IntroSectionWithDropdownNav = ({
   return (
     <Layout title={title} description={description}>
       <section className={`container-fluid ${styles.pageContainer}`}>
-        <Navbar />
+        {/* <Navbar /> */}
         <MobileNav />
-        <div></div>
+        <div className={`row`}>
+          <div className=""></div>
+        </div>
       </section>
       <ProjectInfo {...projectInfo} />
     </Layout>

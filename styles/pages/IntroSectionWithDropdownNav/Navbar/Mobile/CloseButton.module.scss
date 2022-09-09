@@ -1,0 +1,7 @@
+@import '../../../../common/mixins';
+
+.closeNavButton {
+    @include flex($justify-content: flex-end);
+    text-align: right;
+    margin-bottom: 15px;
+}

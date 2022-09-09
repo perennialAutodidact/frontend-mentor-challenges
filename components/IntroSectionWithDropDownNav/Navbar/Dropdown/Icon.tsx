@@ -1,6 +1,6 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
-import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
+import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Dropdown/Icon.module.scss";
 
 interface DropdownIconProps {
   icon: StaticImageData;

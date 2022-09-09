@@ -2,7 +2,7 @@ import { StaticImageData } from "next/image";
 
 export type IntroSectionNavItem = {
   text: string;
-  dropdown?: IntroSectionDropdownItem[];
+  dropdown: IntroSectionDropdownItem[];
 };
 
 export type IntroSectionDropdownItem = {

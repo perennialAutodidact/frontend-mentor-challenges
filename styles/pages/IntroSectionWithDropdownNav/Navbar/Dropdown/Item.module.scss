@@ -1,0 +1,6 @@
+@import '../../../../common/mixins';
+
+.dropdownItem {
+    @include flex($align-items: center);
+    gap: 10px;
+}
