@@ -1,12 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { gsap } from "gsap";
+import { NavbarContext } from "./store";
+import { resetDropdowns } from "./store/actions";
 
 export const useMobileNavTimeline = (
   mobileNavRef: React.RefObject<Element>,
   sideNavId: string,
   backdropId: string
 ) => {
-  const [mobileNavTimeline, _] = useState<GSAPTimeline>(gsap.timeline());
+  function onReverseComplete() {
+    dispatch(resetDropdowns());
+  } 
+
+  const [mobileNavTimeline, _] = useState<GSAPTimeline>(() =>
+    gsap.timeline({
+      onReverseComplete,
+    })
+  );
+  const [state, dispatch] = useContext(NavbarContext);
 
   useEffect(() => {
     if (!mobileNavRef.current || !mobileNavTimeline) return;
@@ -19,22 +30,23 @@ export const useMobileNavTimeline = (
       `#${backdropId}`
     );
 
-    mobileNavTimeline.progress(0).kill();
-
     mobileNavTimeline
       .to(sideNav, {
-        duration: 0.5,
+        duration: 0.3,
         right: "-50px",
         ease: "back.inOut(1.7)",
         immediateRender: false,
       })
-      .to(backdrop, {
-        duration: 0.5,
-        xPercent: 100,
-        delay: -0.3,
-        immediateRender: false,
-      });
-  }, [mobileNavRef]);
+      .to(
+        backdrop,
+        {
+          duration: 0.3,
+          xPercent: 100,
+          immediateRender: false,
+        },
+        "-=0.3"
+      );
+  }, [mobileNavRef, mobileNavTimeline, backdropId, sideNavId, dispatch]);
 
   return mobileNavTimeline;
 };

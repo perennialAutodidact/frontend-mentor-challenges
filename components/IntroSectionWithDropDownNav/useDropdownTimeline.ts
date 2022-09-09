@@ -3,67 +3,89 @@ import { gsap } from "gsap";
 import { NavbarContext } from "./store";
 import { closeDropdown, openDropdown } from "./store/actions";
 export const useDropdownTimeline = (
+  hasDropdownItems: boolean,
   navItemRef: React.RefObject<Element>,
-  navItemId: string
+  navItemId: string,
+  dropdownId: string
 ) => {
   const [state, dispatch] = useContext(NavbarContext);
-  const { openDropdownIds } = state;
-  const [dropdownTimeline, _] = useRef<GSAPTimeline>(gsap.timeline());
-  //   const timelineRef = useRef<GSAPTimeline>();
-  //   let dropdownTimeline: GSAPTimeline | undefined;
-  const dropdownIsOpen = !!(
-    navItemRef.current && openDropdownIds.includes(navItemRef.current)
+
+  const { openDropdownIds, closeAllDropdowns } = state;
+  const [dropdownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
+
+  function onComplete() {
+    dispatch(openDropdown(dropdownId));
+    console.log("Complete");
+  }
+
+  function onReverseComplete() {
+    dispatch(closeDropdown(dropdownId));
+    console.log("Reverse Complete");
+  }
+
+  const [dropdownTimeline, _] = useState<GSAPTimeline>(() =>
+    gsap.timeline({
+      paused: true,
+      onComplete,
+      onReverseComplete,
+    })
   );
 
   useEffect(() => {
-    // if (!navItemRef.current) return;
-    // timelineRef.current = gsap.timeline({});
-    // dropdownTimeline = timelineRef.current;
-    //   console.log({ current: navItemRef.current, dropdownIsOpen });
-    const navItemSelector: gsap.utils.SelectorFunc = gsap.utils.selector(
-      navItemRef.current
-    );
-    const dropdown: ReturnType<typeof navItemSelector> =
-      navItemSelector(`.dropdown`);
-    const arrowIcon: ReturnType<typeof navItemSelector> =
-      navItemSelector(".arrow-icon");
-
-    console.log({ navItemId, dropdown, arrowIcon, navItemRef });
-
-    if (dropdownTimeline) {
-      dropdownTimeline.progress(0).kill();
-
-      dropdownTimeline;
-
-      // .to(dropdown, {
-      //   maxHeight: 200,
-      //   duration: 0.5,
-
-      //   onComplete: function () {
-      //     console.log("COMPLETE");
-      //     navItemRef.current &&
-      //       dispatch(
-      //         dropdownIsOpen
-      //           ? closeDropdown(navItemRef.current)
-      //           : openDropdown(navItemRef.current)
-      //       );
-      //   },
-      // })
-      // .to(dropdown, {
-      //   opacity: 1,
-      //   duration: 0.2,
-      //   delay: -0.3,
-      // })
-      // .to(arrowIcon, {
-      //   rotation: 180,
-      //   duration: 0.3,
-      //   delay: -0.5,
-      // });
+    if (hasDropdownItems) {
+      setDropdownIsOpen(openDropdownIds.includes(dropdownId));
     }
+  }, [openDropdownIds, dropdownId, hasDropdownItems]);
+
+  useEffect(() => {
+    if (navItemRef.current && hasDropdownItems) {
+      const navItemSelector: gsap.utils.SelectorFunc = gsap.utils.selector(
+        navItemRef.current
+      );
+      const dropdown: ReturnType<typeof navItemSelector> =
+        navItemSelector(`.dropdown`);
+      const arrowIcon: ReturnType<typeof navItemSelector> =
+        navItemSelector(".arrow-icon");
+
+      // dropdownTimeline?.progress(0).kill();
+      dropdownTimeline
+        .to(arrowIcon, {
+          rotation: 180,
+          duration: 0.3,
+          immediateRender: false,
+        })
+
+        .to(
+          dropdown,
+          {
+            maxHeight: 200,
+            ease: "back.inOut(1.7)",
+            duration: 0.3,
+            immediateRender: false,
+          },
+          "<"
+        )
+        .to(
+          dropdown,
+          {
+            opacity: 1,
+            duration: 0.2,
+            immediateRender: false,
+          },
+          "<"
+        );
+    }
+
+    // dropdownIsOpen ? dropdownTimeline.play() : dropdownTimeline.reverse();
+
     // return () => {
     //   dropdownTimeline?.progress(0).kill();
     // };
-  }, [navItemRef]);
+  }, [navItemRef, navItemId, dropdownTimeline, hasDropdownItems]);
+
+  useEffect(() => {
+    closeAllDropdowns && dropdownIsOpen && dropdownTimeline.reverse();
+  });
 
   return { dropdownTimeline, dropdownIsOpen };
 };
