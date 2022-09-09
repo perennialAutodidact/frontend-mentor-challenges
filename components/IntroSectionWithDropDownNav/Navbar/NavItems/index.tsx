@@ -1,11 +1,12 @@
 import React from "react";
+import {v4 as uuidv4} from 'uuid'
 import iconTodo from "components/IntroSectionWithDropDownNav/starterCode/images/icon-todo.svg";
 import iconCalendar from "components/IntroSectionWithDropDownNav/starterCode/images/icon-calendar.svg";
 import iconReminders from "components/IntroSectionWithDropDownNav/starterCode/images/icon-reminders.svg";
 import iconPlanning from "components/IntroSectionWithDropDownNav/starterCode/images/icon-planning.svg";
-import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
+import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.module.scss";
 import NavItem from "./NavItem";
-import { IntroSectionNavItem } from "ts/types/challenges/IntroSectionWithDropDownNav";
+import { IntroSectionNavItem } from "ts/IntroSectionWithDropdownNav";
 import AuthLinks from "./AuthLinks";
 
 interface NavItemsProps {
@@ -36,16 +37,19 @@ const NAV_ITEMS: IntroSectionNavItem[] = [
       { text: "Reminders", icon: iconReminders },
       { text: "Planning", icon: iconPlanning },
     ],
+    uuid: uuidv4(),
   },
   {
     text: "Company",
     dropdown: [{ text: "History" }, { text: "Our Team" }, { text: "Blog" }],
+    uuid: uuidv4(),
   },
   {
     text: "Careers",
     dropdown: [],
+    uuid: uuidv4(),
   },
-  { text: "About", dropdown: [] },
+  { text: "About", dropdown: [], uuid: uuidv4() },
 ];
 
 export default NavItems;
