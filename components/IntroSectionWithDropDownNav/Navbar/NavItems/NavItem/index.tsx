@@ -33,7 +33,6 @@ const NavItem = ({
   );
 
   const toggleDropdown: React.MouseEventHandler = (e: React.MouseEvent) => {
-    console.log(dropdownIsOpen)
     dropdownTimeline &&
       (dropdownIsOpen ? dropdownTimeline.reverse() : dropdownTimeline.play());
   };
