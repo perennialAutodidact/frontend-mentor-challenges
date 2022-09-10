@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "ACCA,OAAO,CAAC,kFAAI,CDEZ,AAAA,UAAU,AAAC,CACP,SAAS,CAAE,IAAI,CAClB,AAED,AAAA,gBAAgB,AAAC,CACb,KAAK,CCFK,OAAc,CDG3B",
+    "sources": [
+        "../../styles/pages/IntroSectionWithDropdownNav/Navbar/Dropdown/ArrowIcon.module.scss",
+        "../../styles/pages/IntroSectionWithDropdownNav/_variables.scss",
+        "../../styles/common/_variables.scss"
+    ],
+    "names": [],
+    "file": "ArrowIcon.module.css"
+}

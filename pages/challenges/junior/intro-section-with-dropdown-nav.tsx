@@ -28,11 +28,12 @@ const IntroSectionWithDropdownNav = ({
   description,
 }: IntroSectionWithDropdownNavProps) => {
   const [state, dispatch] = useReducer(navbarReducer, initialState);
+
   return (
     <NavbarContext.Provider value={[state, dispatch]}>
       <Layout title={title} description={description}>
         <section className={`container-fluid ${styles.pageContainer}`}>
-          {/* <Navbar /> */}
+          <DesktopNav />
           <MobileNav />
           <div className={`row`}>
             <div className=""></div>

@@ -1,1 +1,10 @@
-.arrowIcon {}
+
+@import '../../variables';
+
+.arrowIcon {
+    font-size: 2rem;
+}
+
+.arrowIconActive {
+    color: $almostBlack;
+}

@@ -11,34 +11,37 @@ export const navbarReducer: React.Reducer<NavbarState, ReducerAction> = (
       return {
         ...state,
         mobileNavIsOpen: true,
-        closeAllDropdowns: false
+        closeAllDropdowns: false,
       };
     case ReducerActionType.CLOSE_MOBILE_NAV:
       return {
         ...state,
         mobileNavIsOpen: false,
       };
-      case ReducerActionType.OPEN_DROPDOWN: 
+    case ReducerActionType.OPEN_DROPDOWN:
+      const { dropdownId } = action.payload;
       return {
         ...state,
-        openDropdownIds: state.openDropdownIds.concat(action.payload.dropdownId)
-      }
-      case ReducerActionType.CLOSE_DROPDOWN:
-        console.log(action.payload)
-        return {
-          ...state,
-          openDropdownIds: state.openDropdownIds.filter(id=>id!==action.payload.dropdownId)
-        }
+        closeAllDropdowns: false,
+        openDropdownIds: state.openDropdownIds.concat(dropdownId),
+      };
+    case ReducerActionType.CLOSE_DROPDOWN:
+      return {
+        ...state,
+        openDropdownIds: state.openDropdownIds.filter(
+          (id) => id !== action.payload.dropdownId
+        ),
+      };
     case ReducerActionType.RESET_DROPDOWNS:
       return {
         ...state,
         closeAllDropdowns: true,
-        openDropdownIds: []
+        openDropdownIds: [],
       };
     case ReducerActionType.RESET_DROPDOWNS_COMPLETE:
       return {
         ...state,
-        closeAllDropdowns: false
+        closeAllDropdowns: false,
       };
     default:
       return state;

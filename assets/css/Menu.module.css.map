@@ -1,10 +1,12 @@
 {
     "version": 3,
-    "mappings": "AAGA,AAAA,aAAa,AAAC,CACV,OAAO,CAAE,WAAW,CAEpB,UAAU,CAAE,CAAC,CACb,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,CAAC,CACV,KAAK,CAAE,IAAI,CACd,AAED,AAAA,kBAAkB,AAAC,CEUf,OAAO,CAAE,IAAI,CACb,cAAc,CFVY,MAAM,CEWhC,WAAW,CAH4B,UAAU,CAIjD,eAAe,CAJsD,UAAU,CFP/E,GAAG,CAAE,IACT,CAAC",
+    "mappings": "AGCA,OAAO,CAAC,kFAAI,CHGZ,AAAA,aAAa,AAAC,CACV,OAAO,CAAE,WAAW,CAEpB,UAAU,CAAE,CAAC,CACb,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,CAAC,CACV,KAAK,CAAE,IAAI,CACd,AAED,AAAA,kBAAkB,AAAC,CESf,OAAO,CAAE,IAAI,CACb,cAAc,CFTY,MAAM,CEUhC,WAAW,CAH4B,UAAU,CAIjD,eAAe,CAJsD,UAAU,CFN/E,GAAG,CAAE,IACT,CAAC,AAKD,MAAM,EAAE,SAAS,EAAE,MAAM,EACrB,AAAA,aAAa,AAAC,CACV,OAAO,CAAE,SAAS,CAClB,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,IAAI,CAAE,KAAI,CGpBvB,OAAe,CHqBpB,aAAa,CAAE,IAAI,CAEnB,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,IAAI,CACT,KAAK,CAAE,CAAC,CAER,SAAS,CAAE,IAAI,CAElB,AAGD,AAAA,kBAAkB,AAAC,CACf,KAAK,CAAE,IAAI,CACX,GAAG,CAAE,GAAG,CACX,AAED,AAAA,cAAc,AAAC,CACX,KAAK,CAAE,IAAI,CACd",
     "sources": [
         "../../styles/pages/IntroSectionWithDropdownNav/Navbar/Dropdown/Menu.module.scss",
         "../../styles/common/_variables.scss",
-        "../../styles/common/_mixins.scss"
+        "../../styles/common/_mixins.scss",
+        "../../styles/pages/IntroSectionWithDropdownNav/_variables.scss",
+        "../../styles/common/_variables.scss"
     ],
     "names": [],
     "file": "Menu.module.css"

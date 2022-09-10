@@ -4,8 +4,8 @@ import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.m
 const AuthLinks = () => {
   return (
     <div className={styles.authLinks}>
-      <div className={styles.navItem}>Log In</div>
-      <div className={styles.registerButton}>Register</div>
+      <div className={`${styles.navItem} ${styles.authLink}`}>Log In</div>
+      <div className={`${styles.registerButton} ${styles.authLink}`}>Register</div>
     </div>
   );
 };

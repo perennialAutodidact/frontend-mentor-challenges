@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "components/IntroSectionWithDropDownNav/starterCode/images/logo.svg";
-import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
+import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.module.scss";
 import Image from "next/image";
 
 const Logo: React.FC = () => {

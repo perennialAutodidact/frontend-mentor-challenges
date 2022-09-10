@@ -10,6 +10,10 @@
     position: relative;
 }
 
+.navbarDesktop {
+    display: none;
+}
+
 .sideNav {
     @include font-face($introPage__font, $weight: 500, $size: 1.5rem);
 
@@ -93,5 +97,62 @@
         display: none;
     }
 
+    .navbarDesktop {
+        @include flex($align-items: center);
+        
+        padding: 0 25px;
+    }
+    
+    .brand {
+        @include flex($align-items: center);
+        
+    }
 
+    .navSections {
+        @include flex($direction: row, $justify-content: space-between, $align-items: center);
+        padding: 0 25px;
+        width: 100%;
+
+    }
+
+    .navItems {
+        @include flex($direction: row, $justify-content: space-evenly, $align-items: center);
+        gap: 25px;
+    }
+
+    .navItem {
+        max-width: 30%;
+        position: relative;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .navItemActive {
+        color: $almostBlack;
+    }
+
+    .navItemContent:hover {
+        color: $almostBlack;
+    }
+
+
+    .authLinks {
+        @include flex($direction: row, $justify-content: flex-end, $align-items: center);
+        margin: 0;
+        max-width: 20%;
+    }
+
+    .authLink {
+
+        &:hover {
+            cursor: pointer;
+            color: $almostBlack;
+        }
+    }
+
+    .registerButton {
+        max-width: 50%;
+    }
 }

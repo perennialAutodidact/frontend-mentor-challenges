@@ -1,5 +1,5 @@
 import React from "react";
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from "uuid";
 import iconTodo from "components/IntroSectionWithDropDownNav/starterCode/images/icon-todo.svg";
 import iconCalendar from "components/IntroSectionWithDropDownNav/starterCode/images/icon-calendar.svg";
 import iconReminders from "components/IntroSectionWithDropDownNav/starterCode/images/icon-reminders.svg";
@@ -15,15 +15,16 @@ interface NavItemsProps {
 
 const NavItems = ({ toggleMobileNav }: NavItemsProps) => {
   return (
-    <div className={styles.navItems}>
-      {NAV_ITEMS.map((navItem) => (
-        <NavItem
-          {...navItem}
-          key={navItem.text}
-          toggleMobileNav={toggleMobileNav || null}
-        />
-      ))}
-      <AuthLinks />
+    <div>
+      <div className={styles.navItems}>
+        {NAV_ITEMS.map((navItem) => (
+          <NavItem
+            {...navItem}
+            key={navItem.text}
+            toggleMobileNav={toggleMobileNav || null}
+          />
+        ))}
+      </div>
     </div>
   );
 };

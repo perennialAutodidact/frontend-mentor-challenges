@@ -16,8 +16,11 @@ const DropdownMenu = ({
   toggleMobileNav,
   toggleDropdown,
 }: DropdownMenuProps) => {
+
+  const itemsHaveIcons = dropdownItems.some(item=>'icon' in item)  
+
   return (
-    <nav className={`${styles.dropdownMenu} dropdown`}>
+    <nav className={`${styles.dropdownMenu} ${!itemsHaveIcons && styles.smallDropdown} dropdown `}>
       <div className={`${styles.dropdownMenuItems}`}>
         {dropdownItems.map(({ icon, text }) => (
           <DropdownItem

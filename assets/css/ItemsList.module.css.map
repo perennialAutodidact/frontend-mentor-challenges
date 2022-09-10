@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACI,AAAA,kBAAkB,AAAC,CACf,KAAK,CAAE,IAAI,CACd",
+    "sources": [
+        "../../styles/pages/IntroSectionWithDropdownNav/Navbar/Dropdown/ItemsList.module.scss"
+    ],
+    "names": [],
+    "file": "ItemsList.module.css"
+}

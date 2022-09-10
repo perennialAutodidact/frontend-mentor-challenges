@@ -1,15 +1,25 @@
-import React, { useState } from "react";
-import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
+import React, { useContext, useRef, useState } from "react";
+import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.module.scss";
 import Logo from "../NavItems/Logo";
 import NavItems from "../NavItems";
-import HamburgerIcon from "../Mobile/HamburgerIcon";
-import MobileNav from "../Mobile";
+import AuthLinks from "../NavItems/AuthLinks";
+import { useHandleClickOutside } from "common/hooks/useHandleClickOutside";
+import { NavbarContext } from "components/IntroSectionWithDropDownNav/store";
+import { resetDropdowns } from "components/IntroSectionWithDropDownNav/store/actions";
 
 const Navbar = () => {
+  const [state, dispatch] = useContext(NavbarContext)
+  const navbarRef = useRef<HTMLElement>(null)
+
+  useHandleClickOutside(navbarRef, ()=>dispatch(resetDropdowns()))
+
   return (
-    <nav className={styles.navbarDesktop}>
+    <nav className={styles.navbarDesktop} ref={navbarRef}>
       <Logo />
-      <NavItems />
+      <div className={styles.navSections}>
+        <NavItems />
+        <AuthLinks />
+      </div>
     </nav>
   );
 };

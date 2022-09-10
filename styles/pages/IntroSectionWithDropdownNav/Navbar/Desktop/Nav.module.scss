@@ -1,5 +1,5 @@
-@import './variables';
-@import '../../common/mixins';
+@import '../../variables';
+@import '../../../../common/mixins';
 
 
 .navbarDesktop {
@@ -14,6 +14,9 @@
     cursor: pointer;
 }
 
+.navItems {
+    @include flex($direction: row);
+}
 
 .navItem {
     @include flex($align-items: center);
@@ -24,7 +27,7 @@
 
 @media (min-width: 1440px) {
     .navbarDesktop {
-        @include flex($justify-content: space-between);
+        @include flex($direction: row, $justify-content: space-between);
     }
 
     .navItems {

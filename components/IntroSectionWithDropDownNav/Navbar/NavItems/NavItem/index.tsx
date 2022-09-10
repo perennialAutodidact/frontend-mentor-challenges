@@ -10,6 +10,7 @@ import DropdownMenu from "../../Dropdown";
 import ArrowIcon from "./ArrowIcon";
 import { NavbarContext } from "components/IntroSectionWithDropDownNav/store";
 import { useDropdownTimeline } from "components/IntroSectionWithDropDownNav/useDropdownTimeline";
+import { closeMobileNav, resetDropdowns } from "components/IntroSectionWithDropDownNav/store/actions";
 
 type IntroSectionNavItemProps = {
   toggleMobileNav: React.MouseEventHandler | null;
@@ -33,23 +34,29 @@ const NavItem = ({
   );
 
   const toggleDropdown: React.MouseEventHandler = (e: React.MouseEvent) => {
-    dropdownTimeline &&
+  dropdownTimeline &&
       (dropdownIsOpen ? dropdownTimeline.reverse() : dropdownTimeline.play());
   };
 
   return (
     <div
       id={hasDropdownItems ? navItemText : ""}
-      className={styles.navItem}
+      className={`${styles.navItem}`}
       ref={navItemRef}
-      onClick={(e) =>
-        hasDropdownItems
-          ? toggleDropdown(e)
-          : toggleMobileNav && toggleMobileNav(e)
+      onClick={(e) => {
+        if(hasDropdownItems){
+          toggleDropdown(e)
+        } else {
+          toggleMobileNav && toggleMobileNav(e);
+          dispatch(resetDropdowns())
+        }
+        
+        
       }
+    }
     >
       <div className={styles.navItemContent}>
-        <div>{navItemText}</div> {hasDropdownItems && <ArrowIcon />}
+        <div className={dropdownIsOpen ? styles.navItemActive : ''}>{navItemText}</div> {hasDropdownItems && <ArrowIcon/>}
       </div>
       {dropdown && (
         <DropdownMenu

@@ -5,6 +5,7 @@ import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.m
 import CloseButton from "./CloseButton";
 import Logo from "../NavItems/Logo";
 import HamburgerIcon from "./HamburgerIcon";
+import AuthLinks from "../NavItems/AuthLinks";
 
 import {
   closeMobileNav,
@@ -46,6 +47,7 @@ const NavbarMobile = () => {
       <div className={styles.sideNav} id={sideNavId}>
         <CloseButton toggleMobileNav={toggleMobileNav} />
         <NavItems toggleMobileNav={toggleMobileNav} />
+        <AuthLinks />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { NavbarContext } from "./store";
-import { closeDropdown, openDropdown } from "./store/actions";
+import { closeDropdown, openDropdown, resetDropdowns } from "./store/actions";
 export const useDropdownTimeline = (
   hasDropdownItems: boolean,
   navItemRef: React.RefObject<Element>,
@@ -13,7 +13,7 @@ export const useDropdownTimeline = (
   const { openDropdownIds, closeAllDropdowns } = state;
   const [dropdownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
 
-  function onComplete() {
+  function onStart() {
     dispatch(openDropdown(dropdownId));
   }
 
@@ -24,7 +24,7 @@ export const useDropdownTimeline = (
   const [dropdownTimeline, _] = useState<GSAPTimeline>(() =>
     gsap.timeline({
       paused: true,
-      onComplete,
+      onStart,
       onReverseComplete,
     })
   );
