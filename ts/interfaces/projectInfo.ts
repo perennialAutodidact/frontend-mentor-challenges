@@ -26,10 +26,16 @@ export interface Color {
   };
 }
 
+export type PointOfInterest = (string | string[])
+export interface DesignImages {
+  desktop: DesignImage[];
+  mobile: DesignImage[];
+}
 export interface ProjectInfoProps {
   challengeCriteria: ChallengeCriteria;
-  designImages: DesignImage[];
+  designImages: DesignImages;
   styleGuide: StyleGuide;
+  pointsOfInterest: PointOfInterest[]
 }
 
 export interface StyleGuide {

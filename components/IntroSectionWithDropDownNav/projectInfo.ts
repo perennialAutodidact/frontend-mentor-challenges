@@ -1,6 +1,8 @@
 import {
   ChallengeCriteria,
   DesignImage,
+  DesignImages,
+  PointOfInterest,
   ProjectInfoProps,
   StyleGuide,
 } from "ts/interfaces/projectInfo";
@@ -16,13 +18,18 @@ export const challengeCriteria: ChallengeCriteria = [
   "See hover states for all interactive elements on the page",
 ];
 
-export const designImages: DesignImage[] = [
-  { title: "Desktop Design", file: desktopDesign },
-  { title: "Active States", file: activeStates },
-  { title: "Mobile Design", file: mobileDesign },
-  { title: "Mobile Menu Collapsed", file: mobileMenuCollapsed },
-  { title: "Mobile Menu Expanded", file: mobileMenuExpanded },
-];
+export const designImages: DesignImages = {
+  desktop: [
+    { title: "Desktop Design", file: desktopDesign },
+    { title: "Active States", file: activeStates },
+  ],
+  mobile: [
+    { title: "Mobile Design", file: mobileDesign },
+
+    { title: "Mobile Menu Expanded", file: mobileMenuExpanded },
+    { title: "Mobile Menu Collapsed", file: mobileMenuCollapsed },
+  ],
+};
 
 export const styleGuide: StyleGuide = {
   breakpoints: [
@@ -45,8 +52,20 @@ export const styleGuide: StyleGuide = {
   ],
 };
 
+export const pointsOfInterest: PointOfInterest[] = [
+  "React useContext and useReducer hooks for managing navigation menu state.",
+  "Custom hooks for:",
+  [
+    "Opening and closing mobile navigation menu",
+    " Opening and closing navigation dropdowns",
+    "Detecting clicks outside navigation menus",
+  ],
+  "GSAP animations",  
+];
+
 export const projectInfo: ProjectInfoProps = {
   challengeCriteria,
   designImages,
   styleGuide,
+  pointsOfInterest,
 };

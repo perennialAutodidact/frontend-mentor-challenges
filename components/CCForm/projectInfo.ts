@@ -7,17 +7,25 @@ import mobileCompleteState from "components/CCForm/starterCode/design/complete-s
 import {
   StyleGuide,
   ChallengeCriteria,
-  DesignImage,
+  DesignImages,
   ProjectInfoProps,
+  PointOfInterest,
 } from "ts/interfaces/projectInfo";
 
-const designImages: DesignImage[] = [
-  { title: "Desktop Design", file: desktopDesign },
-  { title: "Active States", file: activeStates },
-  { title: "Desktop Complete State", file: desktopCompleteState },
-  { title: "Mobile Design", file: mobileDesign },
-  { title: "Mobile Complete State", file: mobileCompleteState },
-];
+
+
+const designImages: DesignImages = {
+  desktop: [
+    { title: "Design", file: desktopDesign },
+    { title: "Active States", file: activeStates },
+    { title: "Complete State", file: desktopCompleteState },
+  ],
+  mobile: [
+    { title: "Design", file: mobileDesign },
+    { title: "Complete State", file: mobileCompleteState },
+  ],
+};
+
 export const challengeCriteria: ChallengeCriteria = [
   "Fill in the form and see the card details update in real-time",
   "Receive error messages when the form is submitted if:",
@@ -25,7 +33,7 @@ export const challengeCriteria: ChallengeCriteria = [
     "Any input field is empty",
     "The card number, expiry date, or CVC fields are in the wrong format.",
   ],
-  "View the optimal layout depending on their device&apos;s screen size",
+  "View the optimal layout depending on their device's screen size",
   "See hover, active, and focus states for interactive elements on the page",
 ];
 
@@ -73,8 +81,14 @@ export const styleGuide: StyleGuide = {
   ],
 };
 
+export const pointsOfInterest:PointOfInterest[] = [
+  'Implemented the react-hook-form library for handling form state.',
+  'Implemented the Zod library for form validation.'
+]
+
 export const CcFormProjectInfo: ProjectInfoProps = {
   challengeCriteria,
   designImages,
   styleGuide,
+  pointsOfInterest
 };
