@@ -63,57 +63,61 @@ const Form: React.FC<FormProps> = ({ toggleComplete }: FormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles.form} container`}
+      className={`${styles.form} container-fluid`}
     >
       <div className="row">
-        <label htmlFor="cardholderName">
-          <h6 className={`${styles.formLabel}`}>CARDHOLDER NAME</h6>
-        </label>
-        <Controller
-          name="cardholderName"
-          control={control}
-          render={({ field }) => (
-            <Input
-              {...field}
-              placeholder={"e.g. Ravi Shankar"}
-              onFocus={onFocusHandler}
-              onBlur={onBlurHandler}
-              errors={errors}
-              activeElement={activeElement}
-            />
-          )}
-        />
-        <div className="row">
-          {errors?.cardholderName && (
-            <div className={styles.formErrorMessage}>
-              {errors?.cardholderName.message}
-            </div>
-          )}
+        <div className="twelve columns">
+          <label htmlFor="cardholderName">
+            <h6 className={`${styles.formLabel}`}>CARDHOLDER NAME</h6>
+          </label>
+          <Controller
+            name="cardholderName"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder={"e.g. Ravi Shankar"}
+                onFocus={onFocusHandler}
+                onBlur={onBlurHandler}
+                errors={errors}
+                activeElement={activeElement}
+              />
+            )}
+          />
+          <div className="row">
+            {errors?.cardholderName && (
+              <div className={styles.formErrorMessage}>
+                {errors?.cardholderName.message}
+              </div>
+            )}
+          </div>
         </div>
-        <label htmlFor="ccNumber">
-          <h6 className={`${styles.formLabel}`}>CARD NUMBER</h6>
-        </label>
+        <div className="twelve columns">
+          <label htmlFor="ccNumber">
+            <h6 className={`${styles.formLabel}`}>CARD NUMBER</h6>
+          </label>
 
-        <Controller
-          name="ccNumber"
-          control={control}
-          render={({ field }) => (
-            <Input
-              {...field}
-              placeholder={"1234 5678 9123 0000"}
-              onFocus={onFocusHandler}
-              onBlur={onBlurHandler}
-              errors={errors}
-              activeElement={activeElement}
-            />
-          )}
-        />
-        <div className="row">
-          {errors?.ccNumber && (
-            <div className={styles.formErrorMessage}>
-              {errors?.ccNumber.message}
-            </div>
-          )}
+          <Controller
+            name="ccNumber"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder={"1234 5678 9123 0000"}
+                onFocus={onFocusHandler}
+                onBlur={onBlurHandler}
+                errors={errors}
+                activeElement={activeElement}
+              />
+            )}
+          />
+          <div className="row">
+            {errors?.ccNumber && (
+              <div className={styles.formErrorMessage}>
+                {errors?.ccNumber.message}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="row">
@@ -124,55 +128,55 @@ const Form: React.FC<FormProps> = ({ toggleComplete }: FormProps) => {
           <label htmlFor="cvc" className="six columns">
             <h6 className={`${styles.formLabel}`}>CVC</h6>
           </label>
-          <div className={`row`}>
-            <div className={`three columns ${styles["me-sm-5px"]}`}>
-              <Controller
-                name="expirationDate.month"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder={"MM"}
-                    onFocus={onFocusHandler}
-                    onBlur={onBlurHandler}
-                    errors={errors}
-                    activeElement={activeElement}
-                  />
-                )}
-              />
-            </div>
-            <div className={`three columns ${styles["me-sm-5px"]}`}>
-              <Controller
-                name="expirationDate.year"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder={"YY"}
-                    onFocus={onFocusHandler}
-                    onBlur={onBlurHandler}
-                    errors={errors}
-                    activeElement={activeElement}
-                  />
-                )}
-              />
-            </div>
-            <div className={`six columns ${styles["ms-sm-10px"]}`}>
-              <Controller
-                name="cvc"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder={"e.g. 456"}
-                    onFocus={onFocusHandler}
-                    onBlur={onBlurHandler}
-                    errors={errors}
-                    activeElement={activeElement}
-                  />
-                )}
-              />
-            </div>
+        </div>
+        <div className={`row`}>
+          <div className={`three columns`}>
+            <Controller
+              name="expirationDate.month"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  placeholder={"MM"}
+                  onFocus={onFocusHandler}
+                  onBlur={onBlurHandler}
+                  errors={errors}
+                  activeElement={activeElement}
+                />
+              )}
+            />
+          </div>
+          <div className={`three columns`}>
+            <Controller
+              name="expirationDate.year"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  placeholder={"YY"}
+                  onFocus={onFocusHandler}
+                  onBlur={onBlurHandler}
+                  errors={errors}
+                  activeElement={activeElement}
+                />
+              )}
+            />
+          </div>
+          <div className={`six columns`}>
+            <Controller
+              name="cvc"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  placeholder={"e.g. 456"}
+                  onFocus={onFocusHandler}
+                  onBlur={onBlurHandler}
+                  errors={errors}
+                  activeElement={activeElement}
+                />
+              )}
+            />
           </div>
         </div>
         <div className="row">
@@ -219,9 +223,11 @@ const Form: React.FC<FormProps> = ({ toggleComplete }: FormProps) => {
             placeholder="e.g. 123"
           /> */}
       </div>
-      <button type="submit" className={`${styles.formButton} twelve columns`}>
-        Confirm
-      </button>
+      <div className="twelve columns">
+        <button type="submit" className={`${styles.formButton}`}>
+          Confirm
+        </button>
+      </div>
     </form>
   );
 };
