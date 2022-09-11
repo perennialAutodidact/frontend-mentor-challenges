@@ -1,4 +1,5 @@
 import React, { useReducer, useRef } from "react";
+import Image from "next/image";
 import {
   NavbarContext,
   initialState,
@@ -9,20 +10,17 @@ import { ChallengeCriteria, ProjectInfoProps } from "ts/interfaces/projectInfo";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { projectInfo } from "components/IntroSectionWithDropDownNav/projectInfo";
 import ProjectInfo from "common/components/ProjectInfo";
-import desktopDesign from "components/IntroSectionWithDropDownNav/starterCode/design/desktop-design.jpg";
-import mobileDesign from "components/IntroSectionWithDropDownNav/starterCode/design/mobile-design.jpg";
-import activeStates from "components/IntroSectionWithDropDownNav/starterCode/design/active-states.jpg";
-import mobileMenuCollapsed from "components/IntroSectionWithDropDownNav/starterCode/design/mobile-menu-collapsed.jpg";
-import mobileMenuExpanded from "components/IntroSectionWithDropDownNav/starterCode/design/mobile-menu-expanded.jpg";
-import DesktopNav from "components/IntroSectionWithDropDownNav/Navbar/Desktop";
+import heroImageMobile from "components/IntroSectionWithDropDownNav/starterCode/images/image-hero-mobile.png"
+import heroImageDesktop from "components/IntroSectionWithDropDownNav/starterCode/images/image-hero-desktop.png"
+import DesktopNav from "components/IntroSectionWithDropDownNav/components/Navbar/Desktop";
 import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
-import MobileNav from "components/IntroSectionWithDropDownNav/Navbar/Mobile";
+import MobileNav from "components/IntroSectionWithDropDownNav/components/Navbar/Mobile";
 import { useHandleClickOutside } from "common/hooks/useHandleClickOutside";
 import {
   resetDropdowns,
   closeMobileNav,
 } from "components/IntroSectionWithDropDownNav/store/actions";
-
+import ClientLogos from "components/IntroSectionWithDropDownNav/components/ClientLogos";
 type IntroSectionWithDropdownNavProps = {
   title: string;
   description: string;
@@ -39,37 +37,51 @@ const IntroSectionWithDropdownNav = ({
   const hamburgerRef = useRef<HTMLDivElement>(null);
   const sideNavRef = useRef<HTMLDivElement>(null);
 
-  useHandleClickOutside(
-    [desktopNavbarRef, hamburgerRef, sideNavRef],
-    () => {
-      dispatch(resetDropdowns());
-      dispatch(closeMobileNav());
-    }
-  );
+  useHandleClickOutside([desktopNavbarRef, hamburgerRef, sideNavRef], () => {
+    dispatch(resetDropdowns());
+    dispatch(closeMobileNav());
+  });
 
   return (
     <NavbarContext.Provider value={[state, dispatch]}>
       <Layout title={title} description={description}>
         <section className={`container-fluid ${styles.pageContainer}`}>
           <DesktopNav navbarRef={desktopNavbarRef} />
-          <MobileNav navbarRef={mobileNavbarRef} hamburgerRef={hamburgerRef} sideNavRef={sideNavRef}/>
+          <MobileNav
+            navbarRef={mobileNavbarRef}
+            hamburgerRef={hamburgerRef}
+            sideNavRef={sideNavRef}
+          />
           <div className={`row ${styles.pageContentContainer}`}>
             <div
-              className={`twelve-columns-small six-columns-lg offset-one-lg ${styles.pageContent}`}
+              className={`twelve-columns-sm five-columns-lg ${styles.textContent}`}
             >
-              <h1>Make Remote Work</h1>
+              <div className={styles.pageContent}>
+                <div className={styles.textContentInner}>
+                  <div>
+                    <h1 className={styles.contentHeader}>
+                      Make<div>Remote Work</div>
+                    </h1>
 
-              <p>
-                Get your team in sync, no matter your location. Streamline
-                processes, create team rituals and watch productivity soar.
-              </p>
+                    <p className={styles.contentParagraph}>
+                      Get your team in sync, no matter your location. Streamline
+                      processes, create team rituals and watch productivity
+                      soar.
+                    </p>
+                  </div>
 
-              <button>Learn more</button>
+                  <div className={styles.ctaButton}>Learn more</div>
+                <ClientLogos />
+                </div>
+              </div>
             </div>
-            <div
-              className={`twelve-columns-small four-columns-lg ${styles.heroImageContainer}`}
-            >
-              <div className={`${styles.heroImage}`}>{/* Hero Image */}</div>
+            <div className={`twelve-columns-sm five-columns-lg ${styles.heroImageColumn}`}>
+                <div className={styles.heroImageMobile}>
+                  <Image src={heroImageMobile.src} alt={'Hero Image'} height={heroImageMobile.height} width={heroImageMobile.width} blurDataURL={heroImageMobile.blurDataURL}/>
+                </div>
+                <div className={styles.heroImageDesktop}>
+                  <Image src={heroImageDesktop.src} alt={'Hero Image'} height={heroImageDesktop.height} width={heroImageDesktop.width} blurDataURL={heroImageDesktop.blurDataURL}/>
+              </div>
             </div>
           </div>
         </section>
@@ -82,7 +94,7 @@ const IntroSectionWithDropdownNav = ({
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { challengeCriteria, designImages, styleGuide } = projectInfo;
+  const { challengeCriteria, designImages, styleGuide, pointsOfInterest } = projectInfo;
 
   return {
     props: {
@@ -92,6 +104,7 @@ export const getServerSideProps: GetServerSideProps = async (
       challengeCriteria,
       designImages,
       styleGuide,
+      pointsOfInterest
     },
   };
 };
