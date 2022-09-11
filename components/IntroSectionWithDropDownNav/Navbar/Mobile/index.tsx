@@ -18,10 +18,11 @@ const backdropId = "backdrop";
 
 interface NavbarMobileProps {
   navbarRef: React.MutableRefObject<null>;
-  hamburgerRef: React.MutableRefObject<null>;
+  hamburgerRef: React.RefObject<HTMLDivElement>;
+  sideNavRef: React.RefObject<HTMLDivElement>;
 }
 
-const NavbarMobile = ({ navbarRef, hamburgerRef }: NavbarMobileProps) => {
+const NavbarMobile = ({ navbarRef, hamburgerRef, sideNavRef }: NavbarMobileProps) => {
   const [state, dispatch] = useContext(NavbarContext);
   const { mobileNavIsOpen } = state;
   const mobileNavTimeline = useMobileNavTimeline(
@@ -31,6 +32,7 @@ const NavbarMobile = ({ navbarRef, hamburgerRef }: NavbarMobileProps) => {
   );
 
   const toggleMobileNav = (e: React.MouseEvent) => {
+    console.log({ mobileNavIsOpen });
     if (mobileNavIsOpen) {
       dispatch(closeMobileNav());
     } else {
@@ -38,16 +40,22 @@ const NavbarMobile = ({ navbarRef, hamburgerRef }: NavbarMobileProps) => {
     }
   };
 
-  useEffect(() => {
-    mobileNavIsOpen ? mobileNavTimeline.play() : mobileNavTimeline.reverse();
-  }, [mobileNavIsOpen, mobileNavTimeline]);
+  // useEffect(() => {
+  //   if (mobileNavIsOpen) {
+  //     mobileNavTimeline.play();
+  //     console.log('open mobile nav')
+  //   } else {
+  //     console.log('close mobile nav')
+  //     mobileNavTimeline.reverse();
+  //   }
+  // }, [mobileNavIsOpen, mobileNavTimeline]);
 
   return (
-    <div className={styles.navbarMobile}>
+    <div className={styles.navbarMobile} ref={navbarRef}>
       <div className={styles.sideNavBackdrop} id={backdropId}></div>
       <Logo />
       <HamburgerIcon toggleMobileNav={toggleMobileNav} ref={hamburgerRef} />
-      <div className={styles.sideNav} id={sideNavId} ref={navbarRef}>
+      <div className={styles.sideNav} id={sideNavId} ref={sideNavRef}>
         <CloseButton toggleMobileNav={toggleMobileNav} />
         <NavItems toggleMobileNav={toggleMobileNav} />
         <AuthLinks />
