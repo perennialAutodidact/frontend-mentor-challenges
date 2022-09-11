@@ -9,7 +9,54 @@
 
     border-bottom: 1px solid darkgray;
 
-    overflow-x: hidden;
 
-    position: relative;
+    overflow-x: hidden;
+}
+
+.pageContentContainer {
+    @include flex($direction: column);
+
+    gap: 25px;
+}
+
+.pageContent {
+    order: 2;
+}
+
+.heroImageContainer {
+    order: 1;
+}
+
+.heroImage {
+
+    height: 300px;
+    width: 100vw;
+
+    background-image: $heroImage__mobile;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    text-align: center;
+}
+
+
+@media screen and (min-width: 1440px) {
+
+    .pageContentContainer {
+        flex-direction: row;
+    }
+
+    .pageContent {
+        order: 1;
+    }
+
+    .heroImageContainer {
+        order: 2;
+    }
+
+    .heroImage {
+        background-image: $heroImage__desktop;
+        width: 100%;
+    }
 }

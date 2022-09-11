@@ -8,6 +8,9 @@ and <a href="https://www.typescriptlang.org/">TypeScript</a> and
 styled mostly from scratch with <a href="https://sass-lang.com/">Sass</a> using <a href="http://getskeleton.com/">Skeleton CSS</a> as a
 foundation.
 
+### Note:
+All designs are only styled for two breakpoints: small (<=375px) and large (1,440px). Designs may look odd on other screen sizes.
+
 ### Install dependencies and run
 
 ```bash

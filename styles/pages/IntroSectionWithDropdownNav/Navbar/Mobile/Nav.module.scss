@@ -27,7 +27,7 @@
     position: absolute;
     top: 0;
     right: -110%;
-    z-index: 3;
+    z-index: 5;
 
 }
 
@@ -74,17 +74,12 @@
 }
 
 .registerButton {
+    @extend %button;
     width: 90%;
-    padding: 5px;
-
-    border: 1.5px solid $mediumGray;
-    border-radius: 10px;
-
     color: $mediumGray;
-    text-align: center;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 768px) {
     .navbarMobile {
         display: none;
     }
@@ -99,13 +94,17 @@
 
     .navbarDesktop {
         @include flex($align-items: center);
-        
         padding: 0 25px;
+
+        position: relative;
+        top: 0;
+        z-index: 5;
+
     }
-    
+
     .brand {
         @include flex($align-items: center);
-        
+
     }
 
     .navSections {
@@ -113,11 +112,14 @@
         padding: 0 25px;
         width: 100%;
 
+        // position: relative;
     }
 
     .navItems {
-        @include flex($direction: row, $justify-content: space-evenly, $align-items: center);
-        gap: 25px;
+        @include flex($direction: row, $align-items: center);
+        gap: 55px;
+
+        // position: relative;
     }
 
     .navItem {

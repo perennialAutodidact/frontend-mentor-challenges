@@ -3,8 +3,9 @@
 @import '../../variables';
 
 .dropdownMenu {
+    background-color: $almostWhite;
     padding: 10px 15px 0;
-    
+
     max-height: 0;
     overflow-y: hidden;
     opacity: 0;
@@ -19,28 +20,28 @@
 
 
 
-@media (min-width: 1440px) {
+@media (min-width: 768px) {
     .dropdownMenu {
         padding: 10px 10px;
-        width: 90px;
+        width: 130%;
         box-shadow: 0 5px 50px -20px $mediumGray;
         border-radius: 10px;
-        
+
         position: absolute;
         top: 100%;
         right: 0;
-        
-        font-size: 1rem;
-        
+
+        font-size: 1.3rem;
+
     }
-    
-    
+
+
     .dropdownMenuItems {
         width: 100%;
         gap: 0px;
     }
 
     .smallDropdown {
-        width: 80px;
+        width: 100%;
     }
 }

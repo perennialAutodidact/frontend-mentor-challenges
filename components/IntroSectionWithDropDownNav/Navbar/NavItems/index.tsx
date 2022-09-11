@@ -15,17 +15,17 @@ interface NavItemsProps {
 
 const NavItems = ({ toggleMobileNav }: NavItemsProps) => {
   return (
-    <div>
-      <div className={styles.navItems}>
-        {NAV_ITEMS.map((navItem) => (
-          <NavItem
-            {...navItem}
-            key={navItem.text}
-            toggleMobileNav={toggleMobileNav || null}
-          />
-        ))}
-      </div>
+    // <div>
+    <div className={styles.navItems}>
+      {NAV_ITEMS.map((navItem) => (
+        <NavItem
+          {...navItem}
+          key={navItem.text}
+          toggleMobileNav={toggleMobileNav || null}
+        />
+      ))}
     </div>
+    // </div>
   );
 };
 

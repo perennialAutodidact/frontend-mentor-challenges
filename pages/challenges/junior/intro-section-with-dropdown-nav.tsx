@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from "react";
+import React, { useReducer, useRef } from "react";
 import {
   NavbarContext,
   initialState,
@@ -17,6 +17,11 @@ import mobileMenuExpanded from "components/IntroSectionWithDropDownNav/starterCo
 import DesktopNav from "components/IntroSectionWithDropDownNav/Navbar/Desktop";
 import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
 import MobileNav from "components/IntroSectionWithDropDownNav/Navbar/Mobile";
+import { useHandleClickOutside } from "common/hooks/useHandleClickOutside";
+import {
+  resetDropdowns,
+  closeMobileNav,
+} from "components/IntroSectionWithDropDownNav/store/actions";
 
 type IntroSectionWithDropdownNavProps = {
   title: string;
@@ -28,15 +33,42 @@ const IntroSectionWithDropdownNav = ({
   description,
 }: IntroSectionWithDropdownNavProps) => {
   const [state, dispatch] = useReducer(navbarReducer, initialState);
+  const desktopNavbarRef = useRef(null);
+  const mobileNavbarRef = useRef(null);
+  const hamburgerRef = useRef(null);
+
+  useHandleClickOutside(
+    [desktopNavbarRef, mobileNavbarRef, hamburgerRef],
+    () => {
+      dispatch(resetDropdowns());
+      dispatch(closeMobileNav());
+    }
+  );
 
   return (
     <NavbarContext.Provider value={[state, dispatch]}>
       <Layout title={title} description={description}>
         <section className={`container-fluid ${styles.pageContainer}`}>
-          <DesktopNav />
-          <MobileNav />
-          <div className={`row`}>
-            <div className=""></div>
+          <DesktopNav navbarRef={desktopNavbarRef} />
+          <MobileNav navbarRef={mobileNavbarRef} hamburgerRef={hamburgerRef} />
+          <div className={`row ${styles.pageContentContainer}`}>
+            <div
+              className={`twelve-columns-small six-columns-lg offset-one-lg ${styles.pageContent}`}
+            >
+              <h1>Make Remote Work</h1>
+
+              <p>
+                Get your team in sync, no matter your location. Streamline
+                processes, create team rituals and watch productivity soar.
+              </p>
+
+              <button>Learn more</button>
+            </div>
+            <div
+              className={`twelve-columns-small four-columns-lg ${styles.heroImageContainer}`}
+            >
+              <div className={`${styles.heroImage}`}>{/* Hero Image */}</div>
+            </div>
           </div>
         </section>
         <ProjectInfo {...projectInfo} />

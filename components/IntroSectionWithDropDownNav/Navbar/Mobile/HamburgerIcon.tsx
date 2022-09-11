@@ -6,11 +6,34 @@ import { NavbarContext } from "components/IntroSectionWithDropDownNav/store";
 
 interface HamburgerIconProps {
   toggleMobileNav: React.MouseEventHandler;
+  //   hamburgerRef: React.RefObject<HTMLDivElement>;
 }
+// const HamburgerIcon = ({
+//   toggleMobileNav,
+// //   hamburgerRef,
+// }: HamburgerIconProps) => {
+//   return (
+//     <div
+//       className={styles.hamburgerIcon}
+//       onClick={toggleMobileNav}
+//       ref={hamburgerRef}
+//     >
+//       <Image
+//         src={hamburgerIcon}
+//         alt="Open Mobile Navigation Menu"
+//         height={hamburgerIcon.height}
+//         width={hamburgerIcon.width}
+//       />
+//     </div>
+//   );
+// };
 
-const HamburgerIcon = ({ toggleMobileNav }: HamburgerIconProps) => {
+const HamburgerIcon = React.forwardRef<
+  React.RefObject<HTMLDivElement>,
+  HamburgerIconProps
+>(({ toggleMobileNav }, ref) => {
   return (
-    <div className={styles.hamburgerIcon} onClick={toggleMobileNav}>
+    <div className={styles.hamburgerIcon} onClick={toggleMobileNav} ref={ref}>
       <Image
         src={hamburgerIcon}
         alt="Open Mobile Navigation Menu"
@@ -19,6 +42,6 @@ const HamburgerIcon = ({ toggleMobileNav }: HamburgerIconProps) => {
       />
     </div>
   );
-};
+});
 
 export default HamburgerIcon;

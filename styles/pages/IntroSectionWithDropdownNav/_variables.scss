@@ -14,10 +14,19 @@ $introPage__height: calc(100vh - $navbar__height);
 
 $introPage__margin__y: 20px;
 
-
-// Side Nav
+$heroImage__mobile: url('../../../components/IntroSectionWithDropDownNav/starterCode/images/image-hero-mobile.png');
+$heroImage__desktop: url('../../../components/IntroSectionWithDropDownNav/starterCode/images/image-hero-desktop.png');
 
 $sideNav__padding__y: calc($introPage__margin__y/2);
 $sideNav__padding__x: calc($sideNav__padding__y * 3);
 
 $sideNav__height: calc($introPage__height - $introPage__margin__y - $sideNav__padding__y);
+
+%button {
+    padding: 5px;
+
+    border: 1.5px solid $mediumGray;
+    border-radius: 10px;
+
+    color: $mediumGray;
+}

@@ -23,7 +23,7 @@ export const navbarReducer: React.Reducer<NavbarState, ReducerAction> = (
       return {
         ...state,
         closeAllDropdowns: false,
-        openDropdownIds: state.openDropdownIds.concat(dropdownId),
+        openDropdownIds: [...state.openDropdownIds, dropdownId], //state.openDropdownIds.concat(dropdownId),
       };
     case ReducerActionType.CLOSE_DROPDOWN:
       return {

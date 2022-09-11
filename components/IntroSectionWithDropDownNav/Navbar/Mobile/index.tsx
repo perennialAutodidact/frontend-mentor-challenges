@@ -16,16 +16,19 @@ import { useMobileNavTimeline } from "components/IntroSectionWithDropDownNav/use
 const sideNavId = "sideNav";
 const backdropId = "backdrop";
 
-const NavbarMobile = () => {
+interface NavbarMobileProps {
+  navbarRef: React.MutableRefObject<null>;
+  hamburgerRef: React.MutableRefObject<null>;
+}
+
+const NavbarMobile = ({ navbarRef, hamburgerRef }: NavbarMobileProps) => {
   const [state, dispatch] = useContext(NavbarContext);
   const { mobileNavIsOpen } = state;
-  const mobileNavRef = useRef(null);
   const mobileNavTimeline = useMobileNavTimeline(
-    mobileNavRef,
+    navbarRef,
     sideNavId,
     backdropId
   );
-
 
   const toggleMobileNav = (e: React.MouseEvent) => {
     if (mobileNavIsOpen) {
@@ -40,11 +43,11 @@ const NavbarMobile = () => {
   }, [mobileNavIsOpen, mobileNavTimeline]);
 
   return (
-    <div className={styles.navbarMobile} ref={mobileNavRef}>
+    <div className={styles.navbarMobile}>
       <div className={styles.sideNavBackdrop} id={backdropId}></div>
       <Logo />
-      <HamburgerIcon toggleMobileNav={toggleMobileNav} />
-      <div className={styles.sideNav} id={sideNavId}>
+      <HamburgerIcon toggleMobileNav={toggleMobileNav} ref={hamburgerRef} />
+      <div className={styles.sideNav} id={sideNavId} ref={navbarRef}>
         <CloseButton toggleMobileNav={toggleMobileNav} />
         <NavItems toggleMobileNav={toggleMobileNav} />
         <AuthLinks />

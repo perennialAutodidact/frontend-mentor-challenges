@@ -7,11 +7,12 @@ import { useHandleClickOutside } from "common/hooks/useHandleClickOutside";
 import { NavbarContext } from "components/IntroSectionWithDropDownNav/store";
 import { resetDropdowns } from "components/IntroSectionWithDropDownNav/store/actions";
 
-const Navbar = () => {
-  const [state, dispatch] = useContext(NavbarContext)
-  const navbarRef = useRef<HTMLElement>(null)
+interface NavbarProps {
+  navbarRef: React.MutableRefObject<null>;
+}
 
-  useHandleClickOutside(navbarRef, ()=>dispatch(resetDropdowns()))
+const Navbar = ({ navbarRef }: NavbarProps) => {
+  const [state, dispatch] = useContext(NavbarContext);
 
   return (
     <nav className={styles.navbarDesktop} ref={navbarRef}>
