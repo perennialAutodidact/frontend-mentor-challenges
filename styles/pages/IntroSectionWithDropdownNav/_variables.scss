@@ -11,6 +11,8 @@ $fontSize__paragraph: 18px;
 $introPage__font: 'Epilogue', sans-serif;
 
 $introPage__height: calc(100vh - $navbar__height);
+$introPage__padding__y: 50px;
+$introPageContent__height: calc(($introPage__height - ($introPage__padding__y * 4)));
 
 $introPage__margin__y: 20px;
 
@@ -28,5 +30,7 @@ $sideNav__height: calc($introPage__height - $introPage__margin__y - $sideNav__pa
     border: 1.5px solid $mediumGray;
     border-radius: 10px;
 
-    color: $mediumGray;
+    text-align: center;
+
+    text-transform: none;
 }

@@ -3,14 +3,16 @@
 @import '../../../../common/mixins';
 
 .navbarMobile {
+    @include font-face($introPage__font);
     @include flex($justify-content: space-between);
-
+    
     padding: 10px 25px;
-
+    
     position: relative;
 }
 
 .navbarDesktop {
+    @include font-face($introPage__font);
     display: none;
 }
 
@@ -143,7 +145,7 @@
     .authLinks {
         @include flex($direction: row, $justify-content: flex-end, $align-items: center);
         margin: 0;
-        max-width: 20%;
+        max-width: 40%;
     }
 
     .authLink {
@@ -155,6 +157,12 @@
     }
 
     .registerButton {
-        max-width: 50%;
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 1440px){
+    .registerButton {
+        width: 20%
     }
 }

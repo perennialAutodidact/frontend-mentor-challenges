@@ -4,7 +4,8 @@
 
 .pageContainer {
     @include font-face($introPage__font);
-    min-height: $introPage__height;
+    // min-height: $introPage__height;
+    width: 100vw;
     margin: $introPage__margin__y 0;
 
     border-bottom: 1px solid darkgray;
@@ -15,48 +16,145 @@
 
 .pageContentContainer {
     @include flex($direction: column);
-
+    width: 100%;
     gap: 25px;
 }
 
 .pageContent {
+    @include flex($direction: column, $align-items: center);
+    // height: 300px;
+
+    padding: 15px;
+
+}
+
+.textContent {
     order: 2;
 }
 
-.heroImageContainer {
-    order: 1;
+.textContentInner {
+    @include flex($direction: column, $align-items: center);
 }
 
-.heroImage {
 
-    height: 300px;
-    width: 100vw;
+.heroImageColumn {
+    order: 1;
+    // height: 300px;
+}
 
-    background-image: $heroImage__mobile;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+.heroImageContainer {
+    width: 100%;
+}
+
+.heroImageDesktop {
+    display: none;
+}
+
+.contentHeader {
+    @include flex($justify-content: center);
+    gap: 10px;
+    font-weight: 700;
+
+}
+
+.contentParagraph {
+    color: $mediumGray;
 
     text-align: center;
 }
 
+.ctaButton {
+    @extend %button;
+    max-width: 45%;
 
-@media screen and (min-width: 1440px) {
+    padding: 10px 5px;
+
+    background-color: $almostBlack;
+    border: 2px solid $almostBlack;
+
+    font-weight: 700;
+    color: $almostWhite;
+}
+
+.clientLogos {
+    @include flex($justify-content: space-between);
+    gap: 30px;
+
+    margin-top: 50px;
+}
+
+.clientLogo {}
+
+@media screen and (min-width: 768px) {
 
     .pageContentContainer {
         flex-direction: row;
+        justify-content: center;
+        padding: $introPage__padding__y 0;
+        margin: 0 auto;
+        // min-height: 600px;
+        height: $introPage__height;
     }
 
     .pageContent {
         order: 1;
+        padding-left: 0;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 30px;  
+    }
+
+    .textContent {
+        order: 1;
+    }
+
+    .textContentInner {
+        justify-content: space-around;
+        align-items: flex-start;
+        gap: 60px;
+    }
+
+    .heroImageColumn {
+        order: 2;
+
+        // min-height: $introPageContent__height;
     }
 
     .heroImageContainer {
-        order: 2;
     }
 
-    .heroImage {
-        background-image: $heroImage__desktop;
-        width: 100%;
+    .heroImageMobile {
+        display: none;
+
+    }
+
+    .heroImageDesktop {
+        display: block;
+
+    }
+
+    .contentHeader {
+        flex-direction: column;
+
+        font-size: 3rem;
+    }
+
+    .contentParagraph {
+        text-align: left;
+    }
+
+    .ctaButton {
+        padding: 5px 10px;
+        max-width: 40%;
+    }
+
+    .clientLogos {
+        margin: 0;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .pageContentContainer {
+        max-width: 60%;
     }
 }
