@@ -33,12 +33,14 @@ const IntroSectionWithDropdownNav = ({
   description,
 }: IntroSectionWithDropdownNavProps) => {
   const [state, dispatch] = useReducer(navbarReducer, initialState);
+
   const desktopNavbarRef = useRef(null);
   const mobileNavbarRef = useRef(null);
-  const hamburgerRef = useRef(null);
+  const hamburgerRef = useRef<HTMLDivElement>(null);
+  const sideNavRef = useRef<HTMLDivElement>(null);
 
   useHandleClickOutside(
-    [desktopNavbarRef, mobileNavbarRef, hamburgerRef],
+    [desktopNavbarRef, hamburgerRef, sideNavRef],
     () => {
       dispatch(resetDropdowns());
       dispatch(closeMobileNav());
@@ -50,7 +52,7 @@ const IntroSectionWithDropdownNav = ({
       <Layout title={title} description={description}>
         <section className={`container-fluid ${styles.pageContainer}`}>
           <DesktopNav navbarRef={desktopNavbarRef} />
-          <MobileNav navbarRef={mobileNavbarRef} hamburgerRef={hamburgerRef} />
+          <MobileNav navbarRef={mobileNavbarRef} hamburgerRef={hamburgerRef} sideNavRef={sideNavRef}/>
           <div className={`row ${styles.pageContentContainer}`}>
             <div
               className={`twelve-columns-small six-columns-lg offset-one-lg ${styles.pageContent}`}
