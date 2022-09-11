@@ -6,16 +6,7 @@ export const useHandleClickOutside = (
 ) => {
   const handleClickOutside = useCallback(
     (e: MouseEvent) => {
-      if (
-        !refs.some((ref) => {
-          console.log({
-            ref: ref.current,
-            target: e.target,
-            contains: ref.current?.contains(e.target as Node),
-          });
-          return ref.current?.contains(e.target as Node);
-        })
-      ) {
+      if (!refs.some((ref) => ref.current?.contains(e.target as Node))) {
         clickOutsideCallback();
       }
     },
