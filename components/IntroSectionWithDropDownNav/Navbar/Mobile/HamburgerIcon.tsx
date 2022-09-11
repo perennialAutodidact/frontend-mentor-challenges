@@ -28,10 +28,7 @@ interface HamburgerIconProps {
 //   );
 // };
 
-const HamburgerIcon = React.forwardRef<
-  React.RefObject<HTMLDivElement>,
-  HamburgerIconProps
->(({ toggleMobileNav }, ref) => {
+const HamburgerIcon = React.forwardRef(({ toggleMobileNav }:HamburgerIconProps, ref:React.LegacyRef<HTMLDivElement>) => {
   return (
     <div className={styles.hamburgerIcon} onClick={toggleMobileNav} ref={ref}>
       <Image
@@ -43,5 +40,7 @@ const HamburgerIcon = React.forwardRef<
     </div>
   );
 });
+
+HamburgerIcon.displayName = 'HamburgerIcon'
 
 export default HamburgerIcon;
