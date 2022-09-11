@@ -7,7 +7,7 @@ import CompletionCard from "components/CCForm/CompletionCard";
 import ProjectInfo from "common/components/ProjectInfo";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { ProjectInfoProps } from "ts/interfaces/projectInfo";
-import { CcFormProjectInfo } from "components/CCForm/projectInfo";
+import { CcFormProjectInfo, pointsOfInterest } from "components/CCForm/projectInfo";
 import desktopDesign from "components/CCForm/starterCode/design/desktop-design.jpg";
 import mobileDesign from "components/CCForm/starterCode/design/mobile-design.jpg";
 import activeStates from "components/CCForm/starterCode/design/active-states.jpg";
@@ -17,22 +17,19 @@ import mobileCompleteState from "components/CCForm/starterCode/design/complete-s
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { challengeCriteria, designImages, styleGuide } = CcFormProjectInfo;
+  const { challengeCriteria, designImages, styleGuide, pointsOfInterest } = CcFormProjectInfo;
 
   return {
     props: {
       challengeCriteria,
       designImages,
       styleGuide,
+      pointsOfInterest
     },
   };
 };
 
-const CcDetailForm = ({
-  challengeCriteria,
-  designImages,
-  styleGuide,
-}: ProjectInfoProps) => {
+const CcDetailForm = (projectInfo: ProjectInfoProps) => {
   const [formComplete, setFormComplete] = useState<boolean>(false);
   const toggleComplete = (e: React.FormEvent<any>) => {
     setFormComplete((formComplete) => !formComplete);
@@ -56,9 +53,7 @@ const CcDetailForm = ({
         </div>
       </div>
       <ProjectInfo
-        challengeCriteria={challengeCriteria}
-        designImages={designImages}
-        styleGuide={styleGuide}
+        {...projectInfo}
       />
     </Layout>
   );
