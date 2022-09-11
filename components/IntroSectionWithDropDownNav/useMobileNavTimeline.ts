@@ -4,25 +4,25 @@ import { NavbarContext } from "./store";
 import { resetDropdowns } from "./store/actions";
 
 export const useMobileNavTimeline = (
-  mobileNavRef: React.RefObject<Element>,
+  mobileNavRef: React.RefObject<HTMLDivElement>,
   sideNavId: string,
   backdropId: string
 ) => {
   function onReverseComplete() {
     dispatch(resetDropdowns());
-  } 
-
+  }
   const [mobileNavTimeline, _] = useState<GSAPTimeline>(() =>
     gsap.timeline({
-      onReverseComplete,
+      onReverseComplete
     })
   );
   const [state, dispatch] = useContext(NavbarContext);
-
+  const { mobileNavIsOpen } = state;
   useEffect(() => {
     if (!mobileNavRef.current || !mobileNavTimeline) return;
     const navbarSelector: gsap.utils.SelectorFunc =
       gsap.utils.selector(mobileNavRef);
+
     let sideNav: ReturnType<typeof navbarSelector> = navbarSelector(
       `#${sideNavId}`
     );
@@ -47,6 +47,10 @@ export const useMobileNavTimeline = (
         "-=0.3"
       );
   }, [mobileNavRef, mobileNavTimeline, backdropId, sideNavId, dispatch]);
+
+  useEffect(() => {
+    mobileNavIsOpen ? mobileNavTimeline.play() : mobileNavTimeline.reverse();
+  }, [mobileNavIsOpen, mobileNavTimeline]);
 
   return mobileNavTimeline;
 };
