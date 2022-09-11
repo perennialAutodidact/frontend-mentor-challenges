@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Dropdown/Item.module.scss";
 import { StaticImageData } from "next/image";
-import DropdownIcon from "components/IntroSectionWithDropDownNav/Navbar/Dropdown/Icon";
+import DropdownIcon from "components/IntroSectionWithDropDownNav/components/Navbar/Dropdown/Icon";
 import { NavbarContext } from "components/IntroSectionWithDropDownNav/store";
 import { resetDropdowns } from "components/IntroSectionWithDropDownNav/store/actions";
 

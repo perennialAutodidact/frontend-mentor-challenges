@@ -1,11 +1,11 @@
 import React, { useContext, useRef, useEffect } from "react";
-import { NavbarContext } from "../../store";
-import NavItems from "../NavItems";
+import { NavbarContext } from "components/IntroSectionWithDropDownNav/store";
+import NavItems from "components/IntroSectionWithDropDownNav/components/Navbar/NavItems";
 import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.module.scss";
 import CloseButton from "./CloseButton";
-import Logo from "../NavItems/Logo";
+import Logo from "components/IntroSectionWithDropDownNav/components/Navbar/NavItems/Logo";
 import HamburgerIcon from "./HamburgerIcon";
-import AuthLinks from "../NavItems/AuthLinks";
+import AuthLinks from "components/IntroSectionWithDropDownNav/components/Navbar/NavItems";
 
 import {
   closeMobileNav,
@@ -22,7 +22,11 @@ interface NavbarMobileProps {
   sideNavRef: React.RefObject<HTMLDivElement>;
 }
 
-const NavbarMobile = ({ navbarRef, hamburgerRef, sideNavRef }: NavbarMobileProps) => {
+const NavbarMobile = ({
+  navbarRef,
+  hamburgerRef,
+  sideNavRef,
+}: NavbarMobileProps) => {
   const [state, dispatch] = useContext(NavbarContext);
   const { mobileNavIsOpen } = state;
   const mobileNavTimeline = useMobileNavTimeline(
