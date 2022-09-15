@@ -10,8 +10,8 @@ import { ChallengeCriteria, ProjectInfoProps } from "ts/interfaces/projectInfo";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { projectInfo } from "components/IntroSectionWithDropDownNav/projectInfo";
 import ProjectInfo from "common/components/ProjectInfo";
-import heroImageMobile from "components/IntroSectionWithDropDownNav/starterCode/images/image-hero-mobile.png"
-import heroImageDesktop from "components/IntroSectionWithDropDownNav/starterCode/images/image-hero-desktop.png"
+import heroImageMobile from "components/IntroSectionWithDropDownNav/starterCode/images/image-hero-mobile.png";
+import heroImageDesktop from "components/IntroSectionWithDropDownNav/starterCode/images/image-hero-desktop.png";
 import DesktopNav from "components/IntroSectionWithDropDownNav/components/Navbar/Desktop";
 import styles from "styles/pages/IntroSectionWithDropdownNav/IntroSectionWithDropdownNav.module.scss";
 import MobileNav from "components/IntroSectionWithDropDownNav/components/Navbar/Mobile";
@@ -71,16 +71,30 @@ const IntroSectionWithDropdownNav = ({
                   </div>
 
                   <div className={styles.ctaButton}>Learn more</div>
-                <ClientLogos />
                 </div>
               </div>
+            <ClientLogos />
             </div>
-            <div className={`twelve-columns-sm five-columns-lg ${styles.heroImageColumn}`}>
-                <div className={styles.heroImageMobile}>
-                  <Image src={heroImageMobile.src} alt={'Hero Image'} height={heroImageMobile.height} width={heroImageMobile.width} blurDataURL={heroImageMobile.blurDataURL}/>
-                </div>
-                <div className={styles.heroImageDesktop}>
-                  <Image src={heroImageDesktop.src} alt={'Hero Image'} height={heroImageDesktop.height} width={heroImageDesktop.width} blurDataURL={heroImageDesktop.blurDataURL}/>
+            <div
+              className={`twelve-columns-sm five-columns-lg ${styles.heroImageColumn}`}
+            >
+              <div className={styles.heroImageMobile}>
+                <Image
+                  src={heroImageMobile.src}
+                  alt={"Hero Image"}
+                  height={heroImageMobile.height}
+                  width={heroImageMobile.width}
+                  blurDataURL={heroImageMobile.blurDataURL}
+                />
+              </div>
+              <div className={styles.heroImageDesktop}>
+                <Image
+                  src={heroImageDesktop.src}
+                  alt={"Hero Image"}
+                  height={heroImageDesktop.height}
+                  width={heroImageDesktop.width}
+                  blurDataURL={heroImageDesktop.blurDataURL}
+                />
               </div>
             </div>
           </div>
@@ -94,7 +108,8 @@ const IntroSectionWithDropdownNav = ({
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { challengeCriteria, designImages, styleGuide, pointsOfInterest } = projectInfo;
+  const { challengeCriteria, designImages, styleGuide, pointsOfInterest } =
+    projectInfo;
 
   return {
     props: {
@@ -104,7 +119,7 @@ export const getServerSideProps: GetServerSideProps = async (
       challengeCriteria,
       designImages,
       styleGuide,
-      pointsOfInterest
+      pointsOfInterest,
     },
   };
 };
