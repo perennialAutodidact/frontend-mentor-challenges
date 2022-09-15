@@ -5,7 +5,7 @@ import styles from "styles/pages/IntroSectionWithDropdownNav/Navbar/Mobile/Nav.m
 import CloseButton from "./CloseButton";
 import Logo from "components/IntroSectionWithDropDownNav/components/Navbar/NavItems/Logo";
 import HamburgerIcon from "./HamburgerIcon";
-import AuthLinks from "components/IntroSectionWithDropDownNav/components/Navbar/NavItems";
+import AuthLinks from "components/IntroSectionWithDropDownNav/components/Navbar/NavItems/AuthLinks";
 
 import {
   closeMobileNav,
@@ -43,16 +43,6 @@ const NavbarMobile = ({
       dispatch(openMobileNav());
     }
   };
-
-  // useEffect(() => {
-  //   if (mobileNavIsOpen) {
-  //     mobileNavTimeline.play();
-  //     console.log('open mobile nav')
-  //   } else {
-  //     console.log('close mobile nav')
-  //     mobileNavTimeline.reverse();
-  //   }
-  // }, [mobileNavIsOpen, mobileNavTimeline]);
 
   return (
     <div className={styles.navbarMobile} ref={navbarRef}>

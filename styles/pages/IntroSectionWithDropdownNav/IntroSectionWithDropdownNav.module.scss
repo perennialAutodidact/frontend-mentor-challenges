@@ -4,7 +4,6 @@
 
 .pageContainer {
     @include font-face($introPage__font);
-    // min-height: $introPage__height;
     width: 100vw;
     margin: $introPage__margin__y 0;
 
@@ -18,14 +17,20 @@
     @include flex($direction: column);
     width: 100%;
     gap: 25px;
+    margin: 0 auto;
+
 }
 
 .pageContent {
     @include flex($direction: column, $align-items: center);
-    // height: 300px;
+
 
     padding: 15px;
 
+}
+
+.contentColumns {
+    @include flex($direction: column);
 }
 
 .textContent {
@@ -39,11 +44,8 @@
 
 .heroImageColumn {
     order: 1;
+    position: relative;
     // height: 300px;
-}
-
-.heroImageContainer {
-    width: 100%;
 }
 
 .heroImageDesktop {
@@ -51,10 +53,9 @@
 }
 
 .contentHeader {
-    @include flex($justify-content: center);
+    @include flex($direction: column, $align-items: center);
     gap: 10px;
     font-weight: 700;
-
 }
 
 .contentParagraph {
@@ -67,7 +68,7 @@
     @extend %button;
     max-width: 45%;
 
-    padding: 10px 5px;
+    margin: 10px 5px;
 
     background-color: $almostBlack;
     border: 2px solid $almostBlack;
@@ -79,63 +80,60 @@
 .clientLogos {
     @include flex($justify-content: space-between);
     gap: 30px;
-
-    margin-top: 50px;
 }
 
-.clientLogo {}
 
 @media screen and (min-width: 768px) {
 
     .pageContentContainer {
+        display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: center;    
+        align-items: center;
         padding: $introPage__padding__y 0;
-        margin: 0 auto;
-        // min-height: 600px;
-        height: $introPage__height;
     }
 
     .pageContent {
-        order: 1;
+        flex-direction: row;
         padding-left: 0;
         justify-content: space-between;
         align-items: flex-start;
-        gap: 30px;  
+        gap: 30px;
     }
-
+    .contentColumns {
+        @include flex($direction: column);
+    }
     .textContent {
         order: 1;
+        @include flex($direction: column, $justify-content: space-between);
+        gap: 50px;
     }
 
     .textContentInner {
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: flex-start;
-        gap: 60px;
+        gap: 5vh;
     }
 
     .heroImageColumn {
+        @include flex($align-items:center, $justify-content:center);
         order: 2;
-
-        // min-height: $introPageContent__height;
-    }
-
-    .heroImageContainer {
+        position: relative;
+        // max-height: 400px;
     }
 
     .heroImageMobile {
         display: none;
-
     }
 
     .heroImageDesktop {
         display: block;
-
+        max-width: 80%;
     }
 
     .contentHeader {
         flex-direction: column;
-
+        align-items: flex-start;
         font-size: 3rem;
     }
 
@@ -146,6 +144,13 @@
     .ctaButton {
         padding: 5px 10px;
         max-width: 40%;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            cursor: pointer;
+            color: $almostBlack;
+            background-color: $almostWhite;
+        }
     }
 
     .clientLogos {
@@ -156,5 +161,10 @@
 @media screen and (min-width: 1440px) {
     .pageContentContainer {
         max-width: 60%;
+        align-items: flex-start;
+    }
+
+    .heroImageColumn {
+        align-items: flex-start;
     }
 }
